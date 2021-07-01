@@ -1,15 +1,19 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotBox : MonoBehaviour
+public class SlotBox : InteractiveObj
 {
     public bool isPushed;
-    private void OnCollisionEnter(Collision collision)
+    public Door door;
+    public override void OnSomethingEnter(GameObject go)
     {
-        if(collision.gameObject.tag == "Box")
+        print("Algo entró");
+        if(go.tag == "Box")
         {
             isPushed = true;
+            door.checkSlots();
         }
+        base.OnSomethingEnter(go);
     }
 }

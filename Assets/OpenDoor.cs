@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDoor : MonoBehaviour
+public class OpenDoor : InteractiveObj
 {
+    /*
     public SlotBox slot;
     Rigidbody rb;
     public float speed;
@@ -20,4 +21,5 @@ public class OpenDoor : MonoBehaviour
             rb.MovePosition(transform.position + vectPosition);
         }    
     }
+    */
 }
