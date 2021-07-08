@@ -1,38 +1,51 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RotateWithMouse : MonoBehaviour
 {
+    public Vector3 initialCamera;
     public float speedRotate;
     public float rotateX, rotateY;
+    public InputManager inputManager;
+
+    [SerializeField]
+    Vector3 cameraVector;
+
     float x, y;
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        x = 20;
-        y = 0;
+        if(tag == "MainCamera")
+        {
+            transform.localEulerAngles = initialCamera;
+        }
     }
+
+    
     void Update()
     {
-        x = -Input.GetAxis("Mouse Y") * rotateX;
-        y = Input.GetAxis("Mouse X") * rotateY; 
-        //print("x: " +x + " - y: " + y);
-        float angleX = transform.eulerAngles.x;
-        if (angleX < -5 && rotateX == 1)
+        cameraVector = transform.localEulerAngles;
+        float mouseX = -inputManager.horizontalMouse;
+        float mouseY = inputManager.verticalMouse;
+        x = mouseX * rotateX;
+        y = mouseY * rotateY; 
+        transform.eulerAngles += speedRotate * new Vector3(x*0.1f, y, 0);
+        if (rotateX == 1)
         {
-            x = 0;
-            transform.eulerAngles = new Vector3(-5, transform.eulerAngles.y, 0);
+            float angleX = transform.eulerAngles.x;
+            print(angleX); return;
+            if (angleX < 340 && angleX > 300)
+            {
+                x = 0;
+                transform.eulerAngles = new Vector3(340.001f, transform.eulerAngles.y, 0);
+            }
+            else if (angleX > 50)
+            {
+                x = 0;
+                transform.rotation = Quaternion.Euler(49.99f, transform.eulerAngles.y, 0);
+            }
         }
-        if (angleX > 40 && rotateX == 1)
-        {
-            //x = -(angleX - 40);
-            x = 0;
-            transform.eulerAngles = new Vector3(40, transform.eulerAngles.y, 0);
-        }
-
-        //transform.eulerAngles += speedRotate * new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0);
-        transform.eulerAngles += speedRotate * new Vector3(x, y, 0);
-        
     }
 }
