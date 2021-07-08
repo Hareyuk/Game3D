@@ -30,11 +30,11 @@ public class Door : InteractiveObj
 
     public override void OnSomethingEnter(GameObject go)
     {
-        print("Abro ");
+        //print("Abro ");
         base.OnSomethingEnter(go);
     }
     public override void OnSomethingExit(GameObject go)
     {
-        print("Cierro");
+        //print("Cierro");
     }
 }

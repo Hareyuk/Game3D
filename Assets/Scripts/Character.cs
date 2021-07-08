@@ -11,14 +11,15 @@ public class Character : MonoBehaviour
     public GameObject referenceBox;
     void Update()
     {
-        float rotationValue = inputManager.horizontalAxis;
+        /*
+         * float rotationValue = inputManager.horizontalAxis;
         if (rotationValue != 0)
         {
             transform.Rotate(Vector3.up * rotationValue * rotationSpeed * Time.deltaTime);
         }
+        */
 
-
-        Vector3 moveVector = (Vector3.forward * inputManager.verticalAxis);
+        Vector3 moveVector = (Vector3.forward * inputManager.verticalAxis)+ (Vector3.right * inputManager.horizontalAxis);
         if (moveVector != Vector3.zero)
         {
             transform.Translate(moveVector * speed * Time.deltaTime);
