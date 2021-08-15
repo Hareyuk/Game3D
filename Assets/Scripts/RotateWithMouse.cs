@@ -8,6 +8,7 @@ public class RotateWithMouse : MonoBehaviour
     public float speedRotate;
     public float rotateX, rotateY;
     public InputManager inputManager;
+    public Quaternion rotationY;
 
     [SerializeField]
     Vector3 cameraVector;
@@ -30,22 +31,9 @@ public class RotateWithMouse : MonoBehaviour
         float mouseX = -inputManager.horizontalMouse;
         float mouseY = inputManager.verticalMouse;
         x = mouseX * rotateX;
-        y = mouseY * rotateY; 
-        transform.eulerAngles += speedRotate * new Vector3(x*0.1f, y, 0);
-        if (rotateX == 1)
-        {
-            float angleX = transform.eulerAngles.x;
-            print(angleX); return;
-            if (angleX < 340 && angleX > 300)
-            {
-                x = 0;
-                transform.eulerAngles = new Vector3(340.001f, transform.eulerAngles.y, 0);
-            }
-            else if (angleX > 50)
-            {
-                x = 0;
-                transform.rotation = Quaternion.Euler(49.99f, transform.eulerAngles.y, 0);
-            }
-        }
+        y = mouseY * rotateY;
+        transform.eulerAngles += speedRotate * new Vector3(x, y, 0);
+        //transform.eulerAngles += speedRotate * new Vector3(x*0.1f, y, 0);
+        return;
     }
 }
