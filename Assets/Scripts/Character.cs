@@ -6,13 +6,19 @@ public class Character : MonoBehaviour
 {
     public InputManager inputManager;
     public float speed;
+    public float maxSpeed;
+    public float minSpeed;
     public float rotationSpeed;
     //public GameObject prefabBullet;
     public GameObject referenceBox;
     public RotateWithMouse cameraFollower;
-    float t = 0;
+    public Animator anim;
+    public bool isWalking, isRunning;
+
     void Update()
     {
+        anim.SetBool("isWalking", isWalking);
+        anim.SetBool("isRunning", isRunning);
         /*
          * float rotationValue = inputManager.horizontalAxis;
         if (rotationValue != 0)
@@ -21,10 +27,51 @@ public class Character : MonoBehaviour
         }
         */
 
+        if (inputManager.isMovingY || inputManager.isMovingX)
+        {
+            isWalking = true;
+            if(inputManager.isRunning)
+            {
+                isRunning = true;
+                if(speed < maxSpeed)
+                {
+                    speed += (maxSpeed - minSpeed) * Time.deltaTime * 2;
+                }
+            }
+            else
+            {
+                isRunning = false;
+                if(speed > minSpeed)
+                {
+                    speed -= (maxSpeed - minSpeed) * Time.deltaTime * 2;
+                }
+            }
+        }
+        else
+        {
+            isWalking = false;
+        }
+
         if (inputManager.horizontalAxis != 0 || inputManager.verticalAxis != 0)
         {
-            Vector3 moveVector = (Vector3.forward * inputManager.verticalAxis) + (Vector3.right * inputManager.horizontalAxis);
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, cameraFollower.transform.localEulerAngles.y, transform.localEulerAngles.z);
+            float rotationDirection = 0;
+            float verticalAxis = inputManager.verticalAxis;
+            float horizontalAxis = inputManager.horizontalAxis;
+            float newRotationY = cameraFollower.transform.localEulerAngles.y;
+            if (horizontalAxis != 0)
+            {
+                rotationDirection += horizontalAxis * 0;
+            }
+            
+            if(verticalAxis < 0)
+            {
+                rotationDirection += verticalAxis * 90;
+            }
+            newRotationY += rotationDirection;
+            //Rotate to camera
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, newRotationY, transform.localEulerAngles.z);
+            //Move
+            Vector3 moveVector = (Vector3.forward * verticalAxis) + (Vector3.right * horizontalAxis);
             transform.Translate(moveVector * speed * Time.deltaTime);
             /* 
             transform.Translate(Vector3.forward.normalized * speed);
