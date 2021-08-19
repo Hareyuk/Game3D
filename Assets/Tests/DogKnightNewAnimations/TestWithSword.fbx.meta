@@ -71,11 +71,27 @@ ModelImporter:
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'Dog02_l'
       has translation animation that will be discarded.\n\t'Dog02_r' has translation
       animation that will be discarded.\n"
-    animationRetargetingWarnings: 
-    animationDoRetargetingWarnings: 0
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Armature|Action':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Armature|Attack Punch 1':\n\tLeftLowerArm average
+      position error 0.2 mm and maximum position error 1.2 mm at time 0: 0 (0.0%)
+      Frame 0\n\nRetargeting quality report for clip 'Armature|Attack Punch 1 Fixed':\n\tLeftLowerArm
+      average position error 0.2 mm and maximum position error 1.2 mm at time 0:
+      0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'Armature|Attack Punch
+      2':\n\tRetargeting quality is good. No significant differences with original
+      animation were found.\n\nRetargeting quality report for clip 'Armature|Attack
+      Punch 2 FIxed':\n\tRetargeting quality is good. No significant differences
+      with original animation were found.\n\nRetargeting quality report for clip
+      'Armature|Attack Punch 3':\n\tRetargeting quality is good. No significant differences
+      with original animation were found.\n\nRetargeting quality report for clip
+      'Sword3|Action':\n\tRetargeting quality is good. No significant differences
+      with original animation were found.\n\nRetargeting quality report for clip
+      'Sword3|Attack Punch 1':\n\tRetargeting quality is good. No significant differences
+      with original animation were found.\n"
+    animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -113,66 +129,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Attack Punch 1 Fixed
-      takeName: Armature|Attack Punch 1 Fixed
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 24
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 1
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
       name: Attack Punch 2
       takeName: Armature|Attack Punch 2
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 38
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 1
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Armature|Attack Punch 2 FIxed
-      takeName: Armature|Attack Punch 2 FIxed
       internalID: 0
       firstFrame: 0
       lastFrame: 38

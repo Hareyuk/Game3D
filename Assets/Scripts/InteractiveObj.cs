@@ -20,4 +20,13 @@ public class InteractiveObj : MonoBehaviour
     {
         OnSomethingExit(other.gameObject);
     }
+
+    public virtual void OnInteract(Character character)
+    {
+        Pickup pickup = GetComponent<Pickup>();
+        if (pickup != null)
+        {
+            pickup.OnGrab(character);
+        }
+    }
 }

@@ -16,6 +16,11 @@ public class Character : MonoBehaviour
     public bool isWalking, isRunning;
     float cooldownTime = 0;
     bool attackCooldown = false;
+    
+    //Interac
+    public Inventory inventory;
+    public Transform hand;
+    public InteractiveObj ioActive = null;
 
     IEnumerator ResetCooldownAttack()
     {
@@ -23,6 +28,15 @@ public class Character : MonoBehaviour
         anim.SetTrigger("attackButton");
         yield return new WaitForSeconds(cooldownTime);
         attackCooldown = false;
+    }
+    public void OnInteract()
+    {
+        Pickup pickUpObject = inventory.GetPickupObject();
+        if (ioActive != null)
+            ioActive.OnInteract(this);
+        else if (pickUpObject != null)
+            pickUpObject.Drop(this);
+
     }
     void Update()
     {
@@ -105,11 +119,12 @@ public class Character : MonoBehaviour
         bool buttonSkill = inputManager.buttonSkill;
         if (buttonSkill)
         {
-            GameObject box = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            /*GameObject box = GameObject.CreatePrimitive(PrimitiveType.Cube);
             box.transform.position = referenceBox.transform.position;
             box.transform.rotation = referenceBox.transform.rotation;
             box.tag = "Box";
-            box.AddComponent<Rigidbody>();
+            box.AddComponent<Rigidbody>();*/
+            OnInteract();
         }
     }
 
@@ -119,6 +134,7 @@ public class Character : MonoBehaviour
         if (io != null)
         {
             io.OnSomethingEnter(gameObject);
+            ioActive = io;
         }
     }
 
@@ -127,7 +143,8 @@ public class Character : MonoBehaviour
         InteractiveObj io = other.gameObject.GetComponent<InteractiveObj>();
         if (io != null)
         {
-            io.OnSomethingExit(gameObject);
+            io.OnSomethingExit(gameObject); 
+            ioActive = null;
         }
     }
 }
