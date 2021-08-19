@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
     public bool isMovingY, isMovingX;
     public bool isRunning;
     public bool pressingMouseLeftButton;
-
+    public float axisMouse;
     //Acceder por ID
     void Update()
     {
@@ -25,5 +25,6 @@ public class InputManager : MonoBehaviour
         isMovingY = Input.GetButton("Vertical");
         isRunning = Input.GetButton("Run");
         pressingMouseLeftButton = Input.GetMouseButtonDown(0);
+        axisMouse = Input.GetAxis("Mouse ScrollWheel");
     }
 }

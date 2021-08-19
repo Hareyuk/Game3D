@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.6252285, g: 0.040914506, b: 0.36490953, a: 1}
+  m_IndirectSpecularColor: {r: 0.6256772, g: 0.04092785, b: 0.36508575, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1037,6 +1037,7 @@ MonoBehaviour:
   isMovingX: 0
   isRunning: 0
   pressingMouseLeftButton: 0
+  axisMouse: 0
 --- !u!114 &395325608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,7 +1052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 395325607}
   speed: 6
-  maxSpeed: 9
+  maxSpeed: 10
   minSpeed: 6
   rotationSpeed: 150
   referenceBox: {fileID: 1763672495}
@@ -2660,6 +2661,7 @@ MonoBehaviour:
   isMovingX: 0
   isRunning: 0
   pressingMouseLeftButton: 0
+  axisMouse: 0
 --- !u!114 &1152538688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3330,6 +3332,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2300c1e4c8ea60c429352994d6fc5a43, type: 3}
   arrayTags:
   - Box
+  inputManager: {fileID: 0}
 --- !u!1 &1763672495
 GameObject:
   m_ObjectHideFlags: 0

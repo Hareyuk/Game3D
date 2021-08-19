@@ -10,6 +10,7 @@ public class UIInventory : MonoBehaviour
     public Sprite[] arraySprites;
     public string[] arrayTags;
     float posSelection;
+    public InputManager inputManager;
     void Start()
     {
         for(int i = 0; i < arraySprites.Length;i++)
@@ -18,7 +19,17 @@ public class UIInventory : MonoBehaviour
         }
         RefreshInventory();
         posSelection = 0;
-    } 
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    public InteractiveObj ReturnObj()
+    {
+        return inventory.all[(int)posSelection];
+    }
 
     public void RefreshInventory()
     {
