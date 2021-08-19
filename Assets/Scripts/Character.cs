@@ -14,9 +14,24 @@ public class Character : MonoBehaviour
     public RotateWithMouse cameraFollower;
     public Animator anim;
     public bool isWalking, isRunning;
+    float cooldownTime = 0;
+    bool attackCooldown = false;
 
+    IEnumerator ResetCooldownAttack()
+    {
+        attackCooldown = true;
+        anim.SetTrigger("attackButton");
+        yield return new WaitForSeconds(cooldownTime);
+        attackCooldown = false;
+    }
     void Update()
     {
+        bool isPressingAttack = inputManager.pressingMouseLeftButton;
+        if(isPressingAttack && !attackCooldown)
+        {
+            cooldownTime = 0.8f;
+            StartCoroutine(ResetCooldownAttack());
+        }
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isRunning", isRunning);
         /*

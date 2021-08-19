@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
     public float horizontalMouse;
     public bool isMovingY, isMovingX;
     public bool isRunning;
+    public bool pressingMouseLeftButton;
+
     //Acceder por ID
     void Update()
     {
@@ -22,5 +24,6 @@ public class InputManager : MonoBehaviour
         isMovingX = Input.GetButton("Horizontal");
         isMovingY = Input.GetButton("Vertical");
         isRunning = Input.GetButton("Run");
+        pressingMouseLeftButton = Input.GetMouseButtonDown(0);
     }
 }
