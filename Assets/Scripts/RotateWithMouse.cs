@@ -4,30 +4,22 @@ using UnityEngine;
 
 public class RotateWithMouse : MonoBehaviour
 {
-    public Vector3 initialCamera;
     public float speedRotate;
     public float rotateX, rotateY;
     public InputManager inputManager;
     public Quaternion rotationY;
-
-    [SerializeField]
-    Vector3 cameraVector;
+    public Vector2 limitsY;
 
     float x, y;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        if(tag == "MainCamera")
-        {
-            transform.localEulerAngles = initialCamera;
-        }
     }
 
     
     void Update()
     {
-        cameraVector = transform.localEulerAngles;
         float mouseX = -inputManager.horizontalMouse;
         float mouseY = inputManager.verticalMouse;
         x = mouseX * rotateX;

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,10 +17,10 @@ public class Character : MonoBehaviour
     float cooldownAnimAttack = 0;
     float cooldownButtonAttack;
     bool attackCooldown = false;
-    float numAnimAttack = 0;
+    int numAnimAttack = 0;
     public WeaponScript weapon;
     IEnumerator timerAnimAttack;
-    
+
     //Interac
     public Inventory inventory;
     public Transform hand;
@@ -29,7 +29,7 @@ public class Character : MonoBehaviour
     IEnumerator ResetCooldownAttack()
     {
         attackCooldown = true;
-        anim.SetFloat("numberAttack", numAnimAttack);
+        anim.SetInteger("numberAttack", numAnimAttack);
         weapon.GetComponent<Collider>().enabled = true;
         anim.SetTrigger("attackButton");
         StartCoroutine(ResetButtonAttack());
@@ -40,15 +40,8 @@ public class Character : MonoBehaviour
 
     IEnumerator ResetButtonAttack()
     {
-        cooldownButtonAttack = cooldownAnimAttack * 0.6f;
-        print("presionó botón de ataque");
         yield return new WaitForSeconds(cooldownButtonAttack);
         attackCooldown = false;
-    }
-
-    void rotateCharacter()
-    {
-
     }
 
     public void OnInteract()
@@ -62,7 +55,32 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        weapon.GetComponent<Collider>().enabled = false;
+        weapon.GetComponent<Collider>().enabled = false; 
+        rend = GetComponent<Renderer>();
+
+    }
+
+    void ExecuteAnimationAttack()
+    {
+        //CONTROLAR LAS ANIMACIONES EN OTRO SCRIPT
+        timerAnimAttack = ResetCooldownAttack();
+        switch (numAnimAttack)
+        {
+            case 0:
+                cooldownAnimAttack = 0.6f;
+                cooldownButtonAttack = 0.4f;
+                numAnimAttack = 1;
+                StopCoroutine(timerAnimAttack);
+                StartCoroutine(timerAnimAttack);
+                break;
+            case 1:
+                cooldownAnimAttack = 0.8f;
+                cooldownButtonAttack = 0.95f;
+                numAnimAttack = 2;
+                StopCoroutine(timerAnimAttack);
+                StartCoroutine(timerAnimAttack);
+                break;
+        }
     }
 
     void Update()
@@ -70,23 +88,7 @@ public class Character : MonoBehaviour
         bool isPressingAttack = inputManager.pressingMouseLeftButton;
         if(isPressingAttack && !attackCooldown)
         {
-            timerAnimAttack = ResetCooldownAttack();
-            switch (numAnimAttack)
-            {
-                case 0:
-                    cooldownAnimAttack = 0.6f;
-                    numAnimAttack = 1;
-                    StopCoroutine(timerAnimAttack);
-                    StartCoroutine(timerAnimAttack);
-                    break;
-                case 1:
-                    cooldownAnimAttack = 0.8f;
-                    numAnimAttack = 2;
-                    StopCoroutine(timerAnimAttack);
-                    StartCoroutine(timerAnimAttack);
-                    break;
-            }
-            
+            ExecuteAnimationAttack();   
         }
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isRunning", isRunning);
@@ -122,7 +124,6 @@ public class Character : MonoBehaviour
         {
             isWalking = false;
         }
-        rotateCharacter();
         if (inputManager.horizontalAxis != 0 || inputManager.verticalAxis != 0)
         {
             float verticalAxis = inputManager.verticalAxis;

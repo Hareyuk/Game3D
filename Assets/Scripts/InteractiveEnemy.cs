@@ -6,9 +6,22 @@ public class InteractiveEnemy : MonoBehaviour
 {
     public float lifePoints;
     public Animator anim;
+    public DetectTargetCamera enemyView;
+    public bool isWalking;
+    public bool playerDetected;
+
+    private void Update()
+    {
+        playerDetected = enemyView.playerDetected;    
+    }
+
     public virtual void OnSomethingEnter(GameObject go)
     {
-        //print("ganó :" + score);
+
+    }
+    public void ReceiveDamage(float amount)
+    {
+        lifePoints -= amount;
     }
     public virtual void OnSomethingExit(GameObject go) { }
 
@@ -24,10 +37,6 @@ public class InteractiveEnemy : MonoBehaviour
 
     public virtual void OnInteract(Character character)
     {
-        Pickup pickup = GetComponent<Pickup>();
-        if (pickup != null)
-        {
-            pickup.OnGrab(character);
-        }
+        
     }
 }

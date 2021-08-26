@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
+
     private void OnCollisionEnter(Collision collision) //Se llama esta función cuando se choca con algo
     {
         GameObject go = collision.gameObject;

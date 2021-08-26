@@ -77,12 +77,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: attackButton
     m_EventTreshold: 0
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: numberAttack
-    m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: numberAttack
-    m_EventTreshold: 2
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8348652808545800007}
   m_Solo: 0
@@ -303,7 +300,7 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: numberAttack
-    m_Type: 1
+    m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -387,14 +384,14 @@ AnimatorStateMachine:
     m_Position: {x: 650, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8348652808545800007}
-    m_Position: {x: 820, y: 290, z: 0}
+    m_Position: {x: 790, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -284376168779038055}
-    m_Position: {x: 610, y: 290, z: 0}
+    m_Position: {x: 580, y: 160, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 1071092818383027137}
-    m_Position: {x: 600, y: 150, z: 0}
+    m_Position: {x: 570, y: 20, z: 0}
   m_AnyStateTransitions:
   - {fileID: -4555436585512374147}
   - {fileID: 7438350119560065824}
@@ -405,7 +402,7 @@ AnimatorStateMachine:
     - {fileID: 9055681688623645343}
     - {fileID: -1527146527198552845}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 830, y: 410, z: 0}
+  m_AnyStatePosition: {x: 800, y: 280, z: 0}
   m_EntryPosition: {x: 270, y: 200, z: 0}
   m_ExitPosition: {x: 360, y: 290, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -527,12 +524,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: attackButton
     m_EventTreshold: 0
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: numberAttack
-    m_EventTreshold: 1
-  - m_ConditionMode: 4
-    m_ConditionEvent: numberAttack
-    m_EventTreshold: 3
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -284376168779038055}
   m_Solo: 0
