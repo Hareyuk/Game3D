@@ -7,15 +7,16 @@ TagManager:
   - Door
   - Bullet
   - Box
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - LightBloom
   - Water
   - UI
-  - 
-  - 
+  - Blur
+  - MinorBloom
   - 
   - 
   - 

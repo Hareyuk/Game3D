@@ -14,8 +14,12 @@ public class Character : MonoBehaviour
     public RotateWithMouse cameraFollower;
     public Animator anim;
     public bool isWalking, isRunning;
-    float cooldownTime = 0;
+    float cooldownAnimAttack = 0;
+    float cooldownButtonAttack;
     bool attackCooldown = false;
+    float numAnimAttack = 0;
+    public WeaponScript weapon;
+    IEnumerator timerAnimAttack;
     
     //Interac
     public Inventory inventory;
@@ -25,10 +29,28 @@ public class Character : MonoBehaviour
     IEnumerator ResetCooldownAttack()
     {
         attackCooldown = true;
+        anim.SetFloat("numberAttack", numAnimAttack);
+        weapon.GetComponent<Collider>().enabled = true;
         anim.SetTrigger("attackButton");
-        yield return new WaitForSeconds(cooldownTime);
+        StartCoroutine(ResetButtonAttack());
+        yield return new WaitForSeconds(cooldownAnimAttack);
+        numAnimAttack = 0;
+        weapon.GetComponent<Collider>().enabled = false;
+    }
+
+    IEnumerator ResetButtonAttack()
+    {
+        cooldownButtonAttack = cooldownAnimAttack * 0.6f;
+        print("presionó botón de ataque");
+        yield return new WaitForSeconds(cooldownButtonAttack);
         attackCooldown = false;
     }
+
+    void rotateCharacter()
+    {
+
+    }
+
     public void OnInteract()
     {
         Pickup pickUpObject = inventory.GetPickupObject();
@@ -36,15 +58,35 @@ public class Character : MonoBehaviour
             ioActive.OnInteract(this);
         else if (pickUpObject != null)
             pickUpObject.Drop(this);
-
     }
+
+    private void Start()
+    {
+        weapon.GetComponent<Collider>().enabled = false;
+    }
+
     void Update()
     {
         bool isPressingAttack = inputManager.pressingMouseLeftButton;
         if(isPressingAttack && !attackCooldown)
         {
-            cooldownTime = 0.8f;
-            StartCoroutine(ResetCooldownAttack());
+            timerAnimAttack = ResetCooldownAttack();
+            switch (numAnimAttack)
+            {
+                case 0:
+                    cooldownAnimAttack = 0.6f;
+                    numAnimAttack = 1;
+                    StopCoroutine(timerAnimAttack);
+                    StartCoroutine(timerAnimAttack);
+                    break;
+                case 1:
+                    cooldownAnimAttack = 0.8f;
+                    numAnimAttack = 2;
+                    StopCoroutine(timerAnimAttack);
+                    StartCoroutine(timerAnimAttack);
+                    break;
+            }
+            
         }
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isRunning", isRunning);
@@ -80,14 +122,12 @@ public class Character : MonoBehaviour
         {
             isWalking = false;
         }
-
+        rotateCharacter();
         if (inputManager.horizontalAxis != 0 || inputManager.verticalAxis != 0)
         {
             float verticalAxis = inputManager.verticalAxis;
             float horizontalAxis = inputManager.horizontalAxis;
             float newRotationY = cameraFollower.transform.localEulerAngles.y;
-            float rotationDirection = 180 * (verticalAxis + horizontalAxis);
-            //newRotationY += rotationDirection;
             //Rotate to camera
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, newRotationY, transform.localEulerAngles.z);
             //Move
