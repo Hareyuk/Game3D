@@ -56,7 +56,6 @@ public class Character : MonoBehaviour
     private void Start()
     {
         weapon.GetComponent<Collider>().enabled = false; 
-        rend = GetComponent<Renderer>();
 
     }
 
