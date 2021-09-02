@@ -127,12 +127,36 @@ public class Character : MonoBehaviour
         {
             float verticalAxis = inputManager.verticalAxis;
             float horizontalAxis = inputManager.horizontalAxis;
-            float newRotationY = cameraFollower.transform.localEulerAngles.y;
+            float cam_y= cameraFollower.transform.localEulerAngles.y;
+            float new_rot_y = cameraFollower.transform.localEulerAngles.y;
+            if (verticalAxis>0)
+            {
+                new_rot_y = cam_y;
+            }
+            else if(verticalAxis <0)
+            {
+                new_rot_y+= 180*verticalAxis;
+            }
+            if(horizontalAxis>0)
+            {
+                new_rot_y += 90 * horizontalAxis;
+            }
+            else if (horizontalAxis < 0)
+            {
+                new_rot_y -= 90 * -horizontalAxis;
+            } 
             //Rotate to camera
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, newRotationY, transform.localEulerAngles.z);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, new_rot_y, transform.localEulerAngles.z);
+
             //Move
-            Vector3 moveVector = (Vector3.forward * verticalAxis) + (Vector3.right * horizontalAxis);
+            //Vector3 moveVector = (Vector3.forward * verticalAxis) + (Vector3.right * horizontalAxis);
+            Vector3 moveVector = Vector3.forward;
             transform.Translate(moveVector * speed * Time.deltaTime);
+
+
+
+
+
 
             /* 
             transform.Translate(Vector3.forward.normalized * speed);
