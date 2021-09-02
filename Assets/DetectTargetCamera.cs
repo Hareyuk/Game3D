@@ -6,7 +6,7 @@ public class DetectTargetCamera : MonoBehaviour
 {
     public bool playerDetected;
     public Transform playerCharacter;
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject.name == playerCharacter.name)
         {
@@ -14,7 +14,7 @@ public class DetectTargetCamera : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.name == playerCharacter.name)
         {
