@@ -11,6 +11,8 @@ public class UIInventory : MonoBehaviour
     public string[] arrayTags;
     float posSelection;
     public InputManager inputManager;
+    [SerializeField]
+    int positionInventory = 0;
     void Start()
     {
         for(int i = 0; i < arraySprites.Length;i++)
@@ -23,12 +25,63 @@ public class UIInventory : MonoBehaviour
 
     private void Update()
     {
-        
+        if (inputManager.axisMouse < 0f) // forward
+        {
+            //if(positionInventory < inventory.all.Count)
+            {
+                positionInventory++;
+            }    
+        }
+        else if (inputManager.axisMouse > 0f) // backwards
+        {
+            if (positionInventory > 0)
+            {
+                positionInventory--;
+            }
+        }
+        if (positionInventory > 5)
+        {
+            positionInventory = 5;
+        }
+        else if (positionInventory < 0)
+        {
+            positionInventory = 0;
+        }
+
+        HighlightSelectedItem();
     }
 
     public InteractiveObj ReturnObj()
     {
         return inventory.all[(int)posSelection];
+    }
+
+    void UpdateItem()
+    {
+        //Update item here
+    }
+
+    void HighlightSelectedItem()
+    {
+        foreach (Transform child in transform)
+        {
+            GameObject goChild = child.gameObject;
+            if (goChild.name == "Image"+(positionInventory+1))
+            {
+                foreach (Transform childImg in goChild.transform)
+                {
+                    childImg.gameObject.SetActive(true);
+                }
+
+            }
+            else
+            {
+                foreach (Transform childImg in goChild.transform)
+                {
+                    childImg.gameObject.SetActive(false);
+                }
+            }
+        }
     }
 
     public void RefreshInventory()

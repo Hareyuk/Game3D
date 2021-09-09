@@ -128,7 +128,28 @@ public class Character : MonoBehaviour
             float verticalAxis = inputManager.verticalAxis;
             float horizontalAxis = inputManager.horizontalAxis;
             float cam_y= cameraFollower.transform.localEulerAngles.y;
-            float new_rot_y = cameraFollower.transform.localEulerAngles.y;
+            float new_rot_y = 0;
+            if(verticalAxis>0 && horizontalAxis == 0)
+            {
+                new_rot_y = cam_y;
+            }
+            else if(verticalAxis > 0 && horizontalAxis != 0)
+            {
+                new_rot_y = cam_y + horizontalAxis * 45;
+            }
+            if (verticalAxis < 0 && horizontalAxis == 0)
+            {
+                new_rot_y = cam_y + verticalAxis *180;
+            }
+            else if (verticalAxis < 0 && horizontalAxis != 0)
+            {
+                new_rot_y = cam_y +  horizontalAxis * 135;
+            }
+            else if (verticalAxis == 0 && horizontalAxis != 0)
+            {
+                new_rot_y = cam_y + 90 * horizontalAxis;
+            }
+            /*
             if (verticalAxis>0)
             {
                 new_rot_y = cam_y;
@@ -144,42 +165,18 @@ public class Character : MonoBehaviour
             else if (horizontalAxis < 0)
             {
                 new_rot_y -= 90 * -horizontalAxis;
-            } 
-            //Rotate to camera
+            } */
+            //transform.Rotate(0, new_rot_y * Time.deltaTime,0);
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, new_rot_y, transform.localEulerAngles.z);
 
             //Move
-            //Vector3 moveVector = (Vector3.forward * verticalAxis) + (Vector3.right * horizontalAxis);
             Vector3 moveVector = Vector3.forward;
             transform.Translate(moveVector * speed * Time.deltaTime);
-
-
-
-
-
-
-            /* 
-            transform.Translate(Vector3.forward.normalized * speed);
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, cameraFollower.transform.eulerAngles.y, transform.eulerAngles.z);
-            
-             * INTENTO 1
-            //Transform targetPos = cameraFollower.transform;
-            //Vector3 targetPostition = new Vector3(targetPos.position.x, this.transform.position.y, targetPos.position.z);
-            //this.transform.LookAt(targetPostition);
-
-            INTENTO 2
-            transform.rotation = Quaternion.LookRotation(cameraFollower.transform.position, new Vector3(0,1,0));
-            */
         }
 
         bool buttonSkill = inputManager.buttonSkill;
         if (buttonSkill)
         {
-            /*GameObject box = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            box.transform.position = referenceBox.transform.position;
-            box.transform.rotation = referenceBox.transform.rotation;
-            box.tag = "Box";
-            box.AddComponent<Rigidbody>();*/
             OnInteract();
         }
     }

@@ -5,17 +5,47 @@ using UnityEngine;
 public class Door : InteractiveObj
 {
     public List<SlotBox> listSlots;
+    public List<FloorButton> listButtonsFloor;
+    public float numberButtonsFloor = 1;
+    public void checkButtonsFloor()
+    {
+        bool buttonsPressed = true;
+        if(numberButtonsFloor > listButtonsFloor.Count)
+        {
+            foreach (FloorButton btn in listButtonsFloor)
+            {
+                if (btn.isCorrect != true)
+                {
+                    buttonsPressed = false;
+                }
+            }
+            if (buttonsPressed)
+            {
+                OpenDoor();
+            }
+            else
+            {
+                numberButtonsFloor = 1;
+                foreach (FloorButton btn in listButtonsFloor)
+                {
+                    btn.RestartFloorButton();
+                }
+            }
+        }
+        
+    }
+
     public void checkSlots()
     {
-        bool SlotsPushed = true;
+        bool slotsPushed = true;
         foreach (SlotBox slot in listSlots)
         {
             if(slot.isPushed != true)
             {
-                SlotsPushed = false;
+                slotsPushed = false;
             }
         }
-        if(SlotsPushed)
+        if(slotsPushed)
         {
             OpenDoor();
         }
