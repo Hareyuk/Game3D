@@ -24,6 +24,7 @@ public class Character : MonoBehaviour
     //Interac
     public Inventory inventory;
     public Transform hand;
+    public Transform handWeapon;
     public InteractiveObj ioActive = null;
 
     IEnumerator ResetCooldownAttack()
@@ -48,7 +49,9 @@ public class Character : MonoBehaviour
     {
         Pickup pickUpObject = inventory.GetPickupObject();
         if (ioActive != null)
+        {
             ioActive.OnInteract(this);
+        }    
         else if (pickUpObject != null)
             pickUpObject.Drop(this);
     }
@@ -56,7 +59,13 @@ public class Character : MonoBehaviour
     private void Start()
     {
         weapon.GetComponent<Collider>().enabled = false; 
-
+        if(ioActive != null)
+        {
+            if (GetComponent<Collider>())
+            {
+                GetComponent<Collider>().enabled = false;
+            }
+        }
     }
 
     void ExecuteAnimationAttack()
@@ -129,44 +138,39 @@ public class Character : MonoBehaviour
             float horizontalAxis = inputManager.horizontalAxis;
             float cam_y= cameraFollower.transform.localEulerAngles.y;
             float new_rot_y = 0;
-            if(verticalAxis>0 && horizontalAxis == 0)
+            if (verticalAxis > 0 && horizontalAxis == 0)
             {
                 new_rot_y = cam_y;
             }
-            else if(verticalAxis > 0 && horizontalAxis != 0)
+            else if (verticalAxis > 0 && horizontalAxis > 0)
             {
-                new_rot_y = cam_y + horizontalAxis * 45;
+                new_rot_y = cam_y + 45;
             }
+            else if (verticalAxis > 0 && horizontalAxis < 0)
+            {
+                new_rot_y = cam_y - 45;
+            }
+
             if (verticalAxis < 0 && horizontalAxis == 0)
             {
-                new_rot_y = cam_y + verticalAxis *180;
+                new_rot_y = cam_y + 180;
             }
-            else if (verticalAxis < 0 && horizontalAxis != 0)
+            else if (verticalAxis < 0 && horizontalAxis < 0)
             {
-                new_rot_y = cam_y +  horizontalAxis * 135;
+                new_rot_y = cam_y + 225;
             }
-            else if (verticalAxis == 0 && horizontalAxis != 0)
+            else if (verticalAxis < 0 && horizontalAxis > 0)
             {
-                new_rot_y = cam_y + 90 * horizontalAxis;
+                new_rot_y = cam_y + 135;
             }
-            /*
-            if (verticalAxis>0)
+            if (verticalAxis == 0 && horizontalAxis > 0)
             {
-                new_rot_y = cam_y;
+                new_rot_y = cam_y + 90;
             }
-            else if(verticalAxis <0)
+            else if (verticalAxis == 0 && horizontalAxis < 0)
             {
-                new_rot_y+= 180*verticalAxis;
+                new_rot_y = cam_y - 90;
             }
-            if(horizontalAxis>0)
-            {
-                new_rot_y += 90 * horizontalAxis;
-            }
-            else if (horizontalAxis < 0)
-            {
-                new_rot_y -= 90 * -horizontalAxis;
-            } */
-            //transform.Rotate(0, new_rot_y * Time.deltaTime,0);
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, new_rot_y, transform.localEulerAngles.z);
 
             //Move

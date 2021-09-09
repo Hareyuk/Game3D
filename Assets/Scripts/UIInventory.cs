@@ -12,7 +12,10 @@ public class UIInventory : MonoBehaviour
     float posSelection;
     public InputManager inputManager;
     [SerializeField]
-    int positionInventory = 0;
+    public int positionInventory = 0;
+    public Character player;
+    InteractiveObj lastFrameItem;
+
     void Start()
     {
         for(int i = 0; i < arraySprites.Length;i++)
@@ -25,14 +28,15 @@ public class UIInventory : MonoBehaviour
 
     private void Update()
     {
-        if (inputManager.axisMouse < 0f) // forward
+        if (inputManager.axisMouse < 0f)
         {
-            //if(positionInventory < inventory.all.Count)
+            print("cantidad de items:" + inventory.all.Count);
+            if(positionInventory < inventory.all.Count-1)
             {
                 positionInventory++;
             }    
         }
-        else if (inputManager.axisMouse > 0f) // backwards
+        else if (inputManager.axisMouse > 0f) 
         {
             if (positionInventory > 0)
             {
@@ -47,7 +51,6 @@ public class UIInventory : MonoBehaviour
         {
             positionInventory = 0;
         }
-
         HighlightSelectedItem();
     }
 
@@ -56,29 +59,42 @@ public class UIInventory : MonoBehaviour
         return inventory.all[(int)posSelection];
     }
 
-    void UpdateItem()
-    {
-        //Update item here
-    }
 
     void HighlightSelectedItem()
     {
         foreach (Transform child in transform)
         {
             GameObject goChild = child.gameObject;
-            if (goChild.name == "Image"+(positionInventory+1))
+            if(positionInventory >= inventory.all.Count)
+            {
+                break;
+            }
+            InteractiveObj io = inventory.all[positionInventory];
+            GameObject go = io.gameObject;
+            if (goChild.name == "Image" + (positionInventory + 1))
             {
                 foreach (Transform childImg in goChild.transform)
                 {
                     childImg.gameObject.SetActive(true);
                 }
-
+                if(lastFrameItem != io)
+                {
+                    inventory.ChangeItemHand();
+                }
+                else
+                {
+                    lastFrameItem = io;
+                }
             }
             else
             {
                 foreach (Transform childImg in goChild.transform)
                 {
                     childImg.gameObject.SetActive(false);
+                }
+                if(inventory.all.Count > positionInventory)
+                {
+                    go.SetActive(false);
                 }
             }
         }
@@ -95,14 +111,11 @@ public class UIInventory : MonoBehaviour
                 goChild.SetActive(true);
                 Image goImg = goChild.GetComponent<Image>();
                 InteractiveObj obj = list[0];
-                print("tag: " + obj.tag);
-                print("Spite: " + dicIcons[obj.tag]);
-                goImg.sprite = dicIcons[obj.tag];
+                //print("tag: " + obj.tag);
+                //print("Sprite: " + dicIcons[obj.tag]);
+                print(obj.GetComponent<Pickup>().tagName);
+                goImg.sprite = dicIcons[obj.GetComponent<Pickup>().tagName];
                 list.RemoveAt(0);
-            }
-            else
-            {
-                child.gameObject.SetActive(false);
             }
         }
     }

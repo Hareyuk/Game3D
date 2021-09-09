@@ -5,21 +5,37 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     Transform originalParent;
+    public string tagName;
+    public bool weapon;
     private void Start()
     {
         originalParent = transform.parent;
     }
     public void OnGrab(Character character)
     {
-        GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<Collider>().enabled = false;
-        transform.SetParent(character.hand);
+        if(GetComponent<Rigidbody>())
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
+        if(GetComponent<Collider>())
+        {
+            GetComponent<Collider>().enabled = false;
+        }
+        if (weapon)
+        {
+            transform.SetParent(character.handWeapon);
+        }
+        else
+            transform.SetParent(character.hand);
         transform.localPosition = Vector3.zero;
         foreach (Transform child in transform)
         {
             child.localPosition = Vector3.zero;
-            Rigidbody childRb = child.GetComponent<Rigidbody>();
-            childRb.useGravity = false;
+            if(child.GetComponent<Rigidbody>())
+            {
+                Rigidbody childRb = child.GetComponent<Rigidbody>();
+                childRb.useGravity = false;
+            }
         }
         character.inventory.Add(GetComponent<InteractiveObj>());
         character.ioActive = null;

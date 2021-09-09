@@ -5,13 +5,20 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public List<InteractiveObj> all;
-    public int totalItems = 1;
+    public int totalItems = 5;
     public UIInventory uiInventory;
+
+    public void ChangeItemHand()
+    {
+        InteractiveObj io = all[uiInventory.positionInventory].GetComponent<InteractiveObj>();
+        io.gameObject.SetActive(true);
+    }
 
     public void Add(InteractiveObj io)
     {
         if (IsFull()) return;
         all.Add(io);
+        uiInventory.positionInventory = all.Count -1;
         uiInventory.RefreshInventory();
     }
     public void Remove(InteractiveObj io)
