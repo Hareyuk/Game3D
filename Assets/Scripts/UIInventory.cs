@@ -65,10 +65,6 @@ public class UIInventory : MonoBehaviour
         foreach (Transform child in transform)
         {
             GameObject goChild = child.gameObject;
-            if(positionInventory >= inventory.all.Count)
-            {
-                break;
-            }
             InteractiveObj io = inventory.all[positionInventory];
             GameObject go = io.gameObject;
             if (goChild.name == "Image" + (positionInventory + 1))
@@ -110,12 +106,18 @@ public class UIInventory : MonoBehaviour
                 GameObject goChild = child.gameObject;
                 goChild.SetActive(true);
                 Image goImg = goChild.GetComponent<Image>();
-                InteractiveObj obj = list[0];
-                //print("tag: " + obj.tag);
-                //print("Sprite: " + dicIcons[obj.tag]);
-                print(obj.GetComponent<Pickup>().tagName);
-                goImg.sprite = dicIcons[obj.GetComponent<Pickup>().tagName];
-                list.RemoveAt(0);
+                if(list[0] != null)
+                {
+                    InteractiveObj obj = list[0];
+                    //print("tag: " + obj.tag);
+                    //print("Sprite: " + dicIcons[obj.tag]);
+                    goImg.sprite = dicIcons[obj.GetComponent<Pickup>().tagName];
+                    list.RemoveAt(0);
+                }
+                else
+                {
+                    break;
+                }
             }
         }
     }

@@ -42,8 +42,14 @@ public class Pickup : MonoBehaviour
     }
     public void Drop(Character character)
     {
-        GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Collider>().enabled = true;
+        if(GetComponent<Rigidbody>())
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+        }
+        if(GetComponent<Collider>())
+        {
+            GetComponent<Collider>().enabled = true;
+        }
         transform.SetParent(originalParent);
         foreach (Transform child in transform)
         {
