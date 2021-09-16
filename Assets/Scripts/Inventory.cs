@@ -8,10 +8,10 @@ public class Inventory : MonoBehaviour
     public int totalItems = 5;
     public UIInventory uiInventory;
 
-    public void ChangeItemHand()
+    public void Refresh()
     {
-        InteractiveObj io = all[uiInventory.positionInventory].GetComponent<InteractiveObj>();
-        io.gameObject.SetActive(true);
+        uiInventory.RefreshInventory();
+        uiInventory.HighlightSelectedItem();
     }
 
     public void Add(InteractiveObj io)

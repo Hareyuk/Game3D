@@ -24,23 +24,27 @@ public class UIInventory : MonoBehaviour
         }
         RefreshInventory();
         posSelection = 0;
+        HighlightSelectedItem();
     }
 
     private void Update()
     {
+        bool mouseWheelPassed = false;
         if (inputManager.axisMouse < 0f)
         {
-            print("cantidad de items:" + inventory.all.Count);
+            print("cantidad de items:" + inventory.all.Count + " - position: " + positionInventory);
             if(positionInventory < inventory.all.Count-1)
             {
                 positionInventory++;
-            }    
+                mouseWheelPassed = true;
+            }
         }
         else if (inputManager.axisMouse > 0f) 
         {
             if (positionInventory > 0)
             {
                 positionInventory--;
+                mouseWheelPassed = true;
             }
         }
         if (positionInventory > 5)
@@ -51,7 +55,10 @@ public class UIInventory : MonoBehaviour
         {
             positionInventory = 0;
         }
-        HighlightSelectedItem();
+        if(mouseWheelPassed)
+        {
+            HighlightSelectedItem();
+        }
     }
 
     public InteractiveObj ReturnObj()
@@ -60,10 +67,11 @@ public class UIInventory : MonoBehaviour
     }
 
 
-    void HighlightSelectedItem()
+    public void HighlightSelectedItem()
     {
+        int i = 0;
         foreach (Transform child in transform)
-        {
+        {/*
             GameObject goChild = child.gameObject;
             InteractiveObj io = inventory.all[positionInventory];
             GameObject go = io.gameObject;
@@ -73,7 +81,7 @@ public class UIInventory : MonoBehaviour
                 {
                     childImg.gameObject.SetActive(true);
                 }
-                if(lastFrameItem != io)
+                if (lastFrameItem != io)
                 {
                     inventory.ChangeItemHand();
                 }
@@ -88,11 +96,43 @@ public class UIInventory : MonoBehaviour
                 {
                     childImg.gameObject.SetActive(false);
                 }
-                if(inventory.all.Count > positionInventory)
+                if (inventory.all.Count > positionInventory)
                 {
                     go.SetActive(false);
                 }
+            }*/
+            GameObject goChild = child.gameObject;
+            if (inventory.all.Count > i)
+            {
+                InteractiveObj ioCharacter = inventory.all[i];
+                if (child.name == "Image" + (positionInventory + 1))
+                {
+                    foreach (Transform childImg in goChild.transform)
+                    {
+                        childImg.gameObject.SetActive(true);
+                    }
+                    if (ioCharacter)
+                    {
+                        ioCharacter.gameObject.SetActive(true);
+                    }
+                }
+                else
+                {
+                    foreach (Transform childImg in goChild.transform)
+                    {
+                        childImg.gameObject.SetActive(false);
+                    }
+                    ioCharacter.gameObject.SetActive(false);
+                }
             }
+            else
+            {
+                foreach (Transform childImg in goChild.transform)
+                {
+                    childImg.gameObject.SetActive(false);
+                }
+            }
+            i++;
         }
     }
 
@@ -101,23 +141,16 @@ public class UIInventory : MonoBehaviour
         List<InteractiveObj> list = new List<InteractiveObj>(inventory.all);
         foreach(Transform child in transform)
         {
+            GameObject goChild = child.gameObject;
+            goChild.SetActive(true);
+            Image goImg = goChild.GetComponent<Image>();
             if(list.Count > 0)
             {
-                GameObject goChild = child.gameObject;
-                goChild.SetActive(true);
-                Image goImg = goChild.GetComponent<Image>();
-                if(list[0] != null)
-                {
-                    InteractiveObj obj = list[0];
-                    //print("tag: " + obj.tag);
-                    //print("Sprite: " + dicIcons[obj.tag]);
-                    goImg.sprite = dicIcons[obj.GetComponent<Pickup>().tagName];
-                    list.RemoveAt(0);
-                }
-                else
-                {
-                    break;
-                }
+                InteractiveObj obj = list[0];
+                //print("tag: " + obj.tag);
+                //print("Sprite: " + dicIcons[obj.tag]);
+                goImg.sprite = dicIcons[obj.GetComponent<Pickup>().tagName];
+                list.RemoveAt(0);
             }
         }
     }

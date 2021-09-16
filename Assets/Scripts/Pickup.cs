@@ -24,6 +24,7 @@ public class Pickup : MonoBehaviour
         if (weapon)
         {
             transform.SetParent(character.handWeapon);
+            this.transform.localEulerAngles = new Vector3 (180, 0, 0);
         }
         else
             transform.SetParent(character.hand);

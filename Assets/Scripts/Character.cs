@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public string typeObj;
     public InputManager inputManager;
     public float speed;
     public float maxSpeed;
@@ -48,16 +49,18 @@ public class Character : MonoBehaviour
     public void OnInteract()
     {
         Pickup pickUpObject = inventory.GetPickupObject();
-        if (ioActive != null)
+        ioActive.OnInteract(this);
+        inventory.Refresh();
+        /*if (ioActive != null)
         {
-            ioActive.OnInteract(this);
         }    
         else if (pickUpObject != null)
-            pickUpObject.Drop(this);
+            pickUpObject.Drop(this);*/
     }
 
     private void Start()
     {
+        typeObj = "weapon";
         weapon.GetComponent<Collider>().enabled = false; 
         if(ioActive != null)
         {
@@ -70,7 +73,6 @@ public class Character : MonoBehaviour
 
     void ExecuteAnimationAttack()
     {
-        //CONTROLAR LAS ANIMACIONES EN OTRO SCRIPT
         timerAnimAttack = ResetCooldownAttack();
         switch (numAnimAttack)
         {
@@ -96,7 +98,10 @@ public class Character : MonoBehaviour
         bool isPressingAttack = inputManager.pressingMouseLeftButton;
         if(isPressingAttack && !attackCooldown)
         {
-            ExecuteAnimationAttack();   
+            if (typeObj == "weapon")
+            {
+                ExecuteAnimationAttack();
+            }
         }
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isRunning", isRunning);
@@ -132,50 +137,9 @@ public class Character : MonoBehaviour
         {
             isWalking = false;
         }
-        if (inputManager.horizontalAxis != 0 || inputManager.verticalAxis != 0)
+        if (isWalking)
         {
-            float verticalAxis = inputManager.verticalAxis;
-            float horizontalAxis = inputManager.horizontalAxis;
-            float cam_y= cameraFollower.transform.localEulerAngles.y;
-            float new_rot_y = 0;
-            if (verticalAxis > 0 && horizontalAxis == 0)
-            {
-                new_rot_y = cam_y;
-            }
-            else if (verticalAxis > 0 && horizontalAxis > 0)
-            {
-                new_rot_y = cam_y + 45;
-            }
-            else if (verticalAxis > 0 && horizontalAxis < 0)
-            {
-                new_rot_y = cam_y - 45;
-            }
-
-            if (verticalAxis < 0 && horizontalAxis == 0)
-            {
-                new_rot_y = cam_y + 180;
-            }
-            else if (verticalAxis < 0 && horizontalAxis < 0)
-            {
-                new_rot_y = cam_y + 225;
-            }
-            else if (verticalAxis < 0 && horizontalAxis > 0)
-            {
-                new_rot_y = cam_y + 135;
-            }
-            if (verticalAxis == 0 && horizontalAxis > 0)
-            {
-                new_rot_y = cam_y + 90;
-            }
-            else if (verticalAxis == 0 && horizontalAxis < 0)
-            {
-                new_rot_y = cam_y - 90;
-            }
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, new_rot_y, transform.localEulerAngles.z);
-
-            //Move
-            Vector3 moveVector = Vector3.forward;
-            transform.Translate(moveVector * speed * Time.deltaTime);
+            this.Move();
         }
 
         bool buttonSkill = inputManager.buttonSkill;
@@ -183,6 +147,52 @@ public class Character : MonoBehaviour
         {
             OnInteract();
         }
+    }
+
+    private void Move()
+    {
+        float verticalAxis = inputManager.verticalAxis;
+        float horizontalAxis = inputManager.horizontalAxis;
+        float cam_y = cameraFollower.transform.localEulerAngles.y;
+        float new_rot_y = 0;
+        if (verticalAxis > 0 && horizontalAxis == 0)
+        {
+            new_rot_y = cam_y;
+        }
+        else if (verticalAxis > 0 && horizontalAxis > 0)
+        {
+            new_rot_y = cam_y + 45;
+        }
+        else if (verticalAxis > 0 && horizontalAxis < 0)
+        {
+            new_rot_y = cam_y - 45;
+        }
+
+        if (verticalAxis < 0 && horizontalAxis == 0)
+        {
+            new_rot_y = cam_y + 180;
+        }
+        else if (verticalAxis < 0 && horizontalAxis < 0)
+        {
+            new_rot_y = cam_y + 225;
+        }
+        else if (verticalAxis < 0 && horizontalAxis > 0)
+        {
+            new_rot_y = cam_y + 135;
+        }
+        if (verticalAxis == 0 && horizontalAxis > 0)
+        {
+            new_rot_y = cam_y + 90;
+        }
+        else if (verticalAxis == 0 && horizontalAxis < 0)
+        {
+            new_rot_y = cam_y - 90;
+        }
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, new_rot_y, transform.localEulerAngles.z);
+
+        //Move
+        Vector3 moveVector = Vector3.forward;
+        transform.Translate(moveVector * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
