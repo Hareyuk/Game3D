@@ -22,9 +22,8 @@ public class UIInventory : MonoBehaviour
         {
             dicIcons.Add(arrayTags[i], arraySprites[i]);
         }
-        RefreshInventory();
         posSelection = 0;
-        HighlightSelectedItem();
+        RefreshInventory();
     }
 
     private void Update()
@@ -104,16 +103,17 @@ public class UIInventory : MonoBehaviour
             GameObject goChild = child.gameObject;
             if (inventory.all.Count > i)
             {
-                InteractiveObj ioCharacter = inventory.all[i];
+                InteractiveObj ioInventory = inventory.all[i];
                 if (child.name == "Image" + (positionInventory + 1))
                 {
                     foreach (Transform childImg in goChild.transform)
                     {
                         childImg.gameObject.SetActive(true);
                     }
-                    if (ioCharacter)
+                    if (ioInventory)
                     {
-                        ioCharacter.gameObject.SetActive(true);
+                        ioInventory.gameObject.SetActive(true);
+                        player.ioUsing = ioInventory;
                     }
                 }
                 else
@@ -122,7 +122,7 @@ public class UIInventory : MonoBehaviour
                     {
                         childImg.gameObject.SetActive(false);
                     }
-                    ioCharacter.gameObject.SetActive(false);
+                    ioInventory.gameObject.SetActive(false);
                 }
             }
             else
@@ -153,5 +153,6 @@ public class UIInventory : MonoBehaviour
                 list.RemoveAt(0);
             }
         }
+        HighlightSelectedItem();
     }
 }

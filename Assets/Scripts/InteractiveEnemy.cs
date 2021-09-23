@@ -7,13 +7,10 @@ public class InteractiveEnemy : MonoBehaviour
     public float lifePoints;
     public Animator anim;
     public DetectTargetCamera enemyView;
+    public DetectTargetCamera playerNearEnemy;
     public bool isWalking;
     public bool playerDetected;
-
-    private void Update()
-    {
-        playerDetected = enemyView.playerDetected;    
-    }
+    public bool isPlayerNear;
 
     public virtual void OnSomethingEnter(GameObject go)
     {

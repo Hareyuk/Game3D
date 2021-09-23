@@ -19,12 +19,12 @@ public class Inventory : MonoBehaviour
         if (IsFull()) return;
         all.Add(io);
         uiInventory.positionInventory = all.Count -1;
-        uiInventory.RefreshInventory();
+        Refresh();
     }
     public void Remove(InteractiveObj io)
     {
         all.Remove(io);
-        uiInventory.RefreshInventory();
+        Refresh();
     }
     public bool IsFull()
     {

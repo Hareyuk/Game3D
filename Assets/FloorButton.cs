@@ -30,7 +30,8 @@ public class FloorButton : InteractiveObj
                 {
                     isCorrect = false;
                 }
-                GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+                GetComponent<Renderer>().material.color = new Color(80f, 0f, 0f);
+                GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(255F, 0f, 0f, 1F));
                 door.numberButtonsFloor++;
                 door.checkButtonsFloor();
             }
@@ -42,6 +43,7 @@ public class FloorButton : InteractiveObj
     {
         isCorrect = false;
         GetComponent<Renderer>().material.color = new Color(255, 255, 255);
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f, 0f, 0f, 1F));
         isAlreadyPressed = false;
     }
 }

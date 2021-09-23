@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public string typeObj;
     public InputManager inputManager;
     public float speed;
     public float maxSpeed;
@@ -27,17 +26,18 @@ public class Character : MonoBehaviour
     public Transform hand;
     public Transform handWeapon;
     public InteractiveObj ioActive = null;
+    public InteractiveObj ioUsing;
 
     IEnumerator ResetCooldownAttack()
     {
         attackCooldown = true;
         anim.SetInteger("numberAttack", numAnimAttack);
-        weapon.GetComponent<Collider>().enabled = true;
+        ioUsing.GetComponent<Collider>().enabled = true;
         anim.SetTrigger("attackButton");
         StartCoroutine(ResetButtonAttack());
         yield return new WaitForSeconds(cooldownAnimAttack);
         numAnimAttack = 0;
-        weapon.GetComponent<Collider>().enabled = false;
+        ioUsing.GetComponent<Collider>().enabled = false;
     }
 
     IEnumerator ResetButtonAttack()
@@ -58,20 +58,20 @@ public class Character : MonoBehaviour
             pickUpObject.Drop(this);*/
     }
 
-    private void Start()
+    public void disableWeaponCollider()
     {
-        typeObj = "weapon";
-        weapon.GetComponent<Collider>().enabled = false; 
-        if(ioActive != null)
+        if (ioUsing.GetComponent<UsableObjects>().types == UsableObjects.type.WEAPON)
         {
-            if (GetComponent<Collider>())
-            {
-                GetComponent<Collider>().enabled = false;
-            }
+            ioUsing.GetComponent<Collider>().enabled = false;
         }
     }
 
-    void ExecuteAnimationAttack()
+    private void Start()
+    {
+        disableWeaponCollider();   
+    }
+
+    public void ExecuteAnimationAttack()
     {
         timerAnimAttack = ResetCooldownAttack();
         switch (numAnimAttack)
@@ -93,15 +93,19 @@ public class Character : MonoBehaviour
         }
     }
 
+
     void Update()
     {
         bool isPressingAttack = inputManager.pressingMouseLeftButton;
         if(isPressingAttack && !attackCooldown)
         {
-            if (typeObj == "weapon")
+
+            ioUsing.GetComponent<UsableObjects>().UseIt(this);
+            /*
+            if (ioActive.GetComponent<UsableObjects>().types == UsableObjects.type.WEAPON)
             {
                 ExecuteAnimationAttack();
-            }
+            }*/
         }
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isRunning", isRunning);
@@ -151,10 +155,38 @@ public class Character : MonoBehaviour
 
     private void Move()
     {
+        Vector3 nullifyY = new Vector3(1, 0, 1);
+        Vector3 forward = Vector3.Scale(cameraFollower.transform.forward, nullifyY) * (Time.deltaTime * rotationSpeed * inputManager.verticalAxis);
+
+        Vector3 side = Vector3.Scale(cameraFollower.transform.right, nullifyY) * (Time.deltaTime * rotationSpeed * inputManager.horizontalAxis);
+
+        transform.LookAt(transform.position + forward + side);
+        /*
         float verticalAxis = inputManager.verticalAxis;
         float horizontalAxis = inputManager.horizontalAxis;
         float cam_y = cameraFollower.transform.localEulerAngles.y;
         float new_rot_y = 0;
+        if (verticalAxis > 0 && horizontalAxis == 0)
+        {
+            new_rot_y = cam_y * verticalAxis;
+        }
+        else if (verticalAxis > 0 && horizontalAxis != 0)
+        {
+            new_rot_y = cam_y + 45 * horizontalAxis;
+        }
+        if (verticalAxis < 0 && horizontalAxis == 0)
+        {
+            new_rot_y = cam_y + 180 * verticalAxis;
+        }
+        else if (verticalAxis < 0 && horizontalAxis != 0)
+        {
+            new_rot_y = cam_y + 180 *verticalAxis + 45 * -horizontalAxis;
+        }
+        if (verticalAxis == 0 && horizontalAxis != 0)
+        {
+            new_rot_y = cam_y + 90 * horizontalAxis;
+        }  */
+        /*
         if (verticalAxis > 0 && horizontalAxis == 0)
         {
             new_rot_y = cam_y;
@@ -163,7 +195,7 @@ public class Character : MonoBehaviour
         {
             new_rot_y = cam_y + 45;
         }
-        else if (verticalAxis > 0 && horizontalAxis < 0)
+        else if(verticalAxis > 0 && horizontalAxis < 0)
         {
             new_rot_y = cam_y - 45;
         }
@@ -172,14 +204,15 @@ public class Character : MonoBehaviour
         {
             new_rot_y = cam_y + 180;
         }
-        else if (verticalAxis < 0 && horizontalAxis < 0)
-        {
-            new_rot_y = cam_y + 225;
-        }
         else if (verticalAxis < 0 && horizontalAxis > 0)
         {
             new_rot_y = cam_y + 135;
         }
+        else if (verticalAxis < 0 && horizontalAxis < 0)
+        {
+            new_rot_y = cam_y + 225;
+        }
+
         if (verticalAxis == 0 && horizontalAxis > 0)
         {
             new_rot_y = cam_y + 90;
@@ -187,8 +220,19 @@ public class Character : MonoBehaviour
         else if (verticalAxis == 0 && horizontalAxis < 0)
         {
             new_rot_y = cam_y - 90;
-        }
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, new_rot_y, transform.localEulerAngles.z);
+        }*/
+        //rotateObject.localEulerAngles = new Vector3(0, new_rot_y, 0);
+        /*
+        rotateObject.localRotation = Quaternion.Euler(0f, new_rot_y,0);
+        Vector3 targetDirection = rotationReference.position - transform.position;
+        targetDirection.y = 0;
+        float singleStep = rotationSpeed * Time.deltaTime;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+        var targetRotation = Quaternion.LookRotation(newDirection);
+        transform.rotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * rotationSpeed);
+        */
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, new_rot_y, 0), Time.deltaTime * rotationSpeed);
+        //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, new_rot_y, transform.localEulerAngles.z);
 
         //Move
         Vector3 moveVector = Vector3.forward;
