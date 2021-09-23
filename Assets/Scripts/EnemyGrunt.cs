@@ -32,7 +32,7 @@ public class EnemyGrunt : InteractiveEnemy
 
             if (playerDetected)
             {
-                isWalking = true;
+                isWalking = true; 
                 float step = speed * Time.deltaTime; // calculate distance to move
                 transform.position = Vector3.MoveTowards(transform.position, player.position, step);
             }

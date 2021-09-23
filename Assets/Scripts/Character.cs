@@ -161,6 +161,7 @@ public class Character : MonoBehaviour
         Vector3 side = Vector3.Scale(cameraFollower.transform.right, nullifyY) * (Time.deltaTime * rotationSpeed * inputManager.horizontalAxis);
 
         transform.LookAt(transform.position + forward + side);
+
         /*
         float verticalAxis = inputManager.verticalAxis;
         float horizontalAxis = inputManager.horizontalAxis;
