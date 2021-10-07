@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5134221671049340035}
   - component: {fileID: 5134221671049340044}
   m_Layer: 0
-  m_Name: Red;ight
+  m_Name: RedLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

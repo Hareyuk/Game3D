@@ -1109,7 +1109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 395325608}
-  distance: 0
+  distance: 2
   height: 2
 --- !u!1 &363586679
 GameObject:
@@ -1263,7 +1263,6 @@ MonoBehaviour:
   rotationSpeed: 800
   referenceBox: {fileID: 1763672495}
   cameraFollower: {fileID: 327592839}
-  anim: {fileID: 395325609}
   isWalking: 0
   isRunning: 0
   weapon: {fileID: 1399550406}
@@ -1302,7 +1301,71 @@ MonoBehaviour:
   m_GameObject: {fileID: 395325604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4bd07ecdce55d45a6a928e81336e06, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e61bfccdddcaae48952da07b247a2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allStates:
+  - {fileID: 395325613}
+  - {fileID: 395325612}
+  - {fileID: 395325614}
+  - {fileID: 395325614}
+  anim: {fileID: 395325609}
+  character: {fileID: 395325608}
+--- !u!114 &395325612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395325604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56fd7b6d4fc19d418b4dce18a61ac3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  state: 3
+  inputManager: {fileID: 0}
+--- !u!114 &395325613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395325604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecd6ba8c35210a4ba0e2e5b297bdf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  state: 0
+  inputManager: {fileID: 0}
+--- !u!114 &395325614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395325604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4855d27a4a775984eac66a8bf2835a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  state: 1
+  inputManager: {fileID: 0}
+--- !u!114 &395325615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395325604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24be0b4654401024882607944c61e9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &409052612
@@ -2713,6 +2776,22 @@ MonoBehaviour:
   blendDistance: 138.27
   weight: 1
   priority: 10
+--- !u!111 &837566422
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837566420}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: a88197d6219583f40b6902932903cbdd, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a88197d6219583f40b6902932903cbdd, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &850305763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4155,7 +4234,6 @@ MonoBehaviour:
   rotationSpeed: 150
   referenceBox: {fileID: 10890115}
   cameraFollower: {fileID: 327592839}
-  anim: {fileID: 0}
   isWalking: 0
   isRunning: 0
   weapon: {fileID: 0}
@@ -4364,15 +4442,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bc3e6f1627599b4680bb67704ab652e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -73.658
+      value: -73.659485
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bc3e6f1627599b4680bb67704ab652e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 73.313
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bc3e6f1627599b4680bb67704ab652e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -9.056
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: 0bc3e6f1627599b4680bb67704ab652e, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4855,7 +4933,6 @@ MonoBehaviour:
   rotationSpeed: 150
   referenceBox: {fileID: 0}
   cameraFollower: {fileID: 327592839}
-  anim: {fileID: 1419606212}
   isWalking: 0
   isRunning: 0
   weapon: {fileID: 0}
@@ -4879,11 +4956,6 @@ MonoBehaviour:
   all: []
   totalItems: 5
   uiInventory: {fileID: 1626403251}
---- !u!95 &1419606212 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: a2cfa12e4cf28f8489b724922d45b4c7, type: 3}
-  m_PrefabInstance: {fileID: 1419606204}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1431512237
 PrefabInstance:
   m_ObjectHideFlags: 0

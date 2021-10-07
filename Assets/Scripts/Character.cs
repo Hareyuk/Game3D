@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
     //public GameObject prefabBullet;
     public GameObject referenceBox;
     public RotateWithMouse cameraFollower;
-    public Animator anim;
+    //public Animator anim;
     public bool isWalking, isRunning;
     float cooldownAnimAttack = 0;
     float cooldownButtonAttack;
@@ -31,9 +31,9 @@ public class Character : MonoBehaviour
     IEnumerator ResetCooldownAttack()
     {
         attackCooldown = true;
-        anim.SetInteger("numberAttack", numAnimAttack);
+        //anim.SetInteger("numberAttack", numAnimAttack);
         ioUsing.GetComponent<Collider>().enabled = true;
-        anim.SetTrigger("attackButton");
+        //anim.SetTrigger("attackButton");
         StartCoroutine(ResetButtonAttack());
         yield return new WaitForSeconds(cooldownAnimAttack);
         numAnimAttack = 0;
@@ -107,8 +107,8 @@ public class Character : MonoBehaviour
                 ExecuteAnimationAttack();
             }*/
         }
-        anim.SetBool("isWalking", isWalking);
-        anim.SetBool("isRunning", isRunning);
+        //anim.SetBool("isWalking", isWalking);
+        //anim.SetBool("isRunning", isRunning);
         /*
          * float rotationValue = inputManager.horizontalAxis;
         if (rotationValue != 0)
