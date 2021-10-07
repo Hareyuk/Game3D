@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRun : MonoBehaviour
+public class PlayerRun : PlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Init()
     {
-        
+        player.anim.Play("Run");
     }
 
     // Update is called once per frame
