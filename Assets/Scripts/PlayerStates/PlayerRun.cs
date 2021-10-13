@@ -12,6 +12,9 @@ public class PlayerRun : PlayerState
     // Update is called once per frame
     void Update()
     {
-        
+        if(!inputManager.isRunning)
+        {
+            player.SetNewState(PlayerState.states.WALK);
+        }
     }
 }

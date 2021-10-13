@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     public Animator anim;
     public Character character;
 
+    public float speed;
+    public float maxSpeed;
+    public float minSpeed;
+    public float rotationSpeed;
     void Start()
     {
         SetNewState(PlayerState.states.IDLE);
