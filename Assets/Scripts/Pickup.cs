@@ -10,9 +10,9 @@ public class Pickup : MonoBehaviour
     {
         originalParent = transform.parent;
     }
-    public void OnGrab(Character character)
+    public void OnGrab(Player player)
     {
-        bool isWeapon = GetComponent<UsableObjects>().types == UsableObjects.type.WEAPON;
+        bool isWeapon = GetComponent<UsableObjects>().type == UsableObjects.types.WEAPON;
         InteractiveObj _sword = null;
         if (GetComponent<Rigidbody>()) 
             GetComponent<Rigidbody>().isKinematic = true;
@@ -25,7 +25,7 @@ public class Pickup : MonoBehaviour
                 if(child.name == "Usable")
                 {
                     child.gameObject.SetActive(true);
-                    child.transform.SetParent(character.handWeapon);
+                    child.transform.SetParent(player.handWeapon);
                     child.localPosition = new Vector3(0, 0, 0);
                     child.transform.localEulerAngles = new Vector3(180, 0, 0);
                     child.GetComponent<Collider>().enabled = false;
@@ -40,7 +40,7 @@ public class Pickup : MonoBehaviour
             
         }
         else
-            transform.SetParent(character.hand);
+            transform.SetParent(player.hand);
         transform.localPosition = Vector3.zero;
         foreach (Transform child in transform)
         {
@@ -53,15 +53,15 @@ public class Pickup : MonoBehaviour
         }
         if (isWeapon)
         {
-            character.inventory.Add(_sword);
+            player.inventory.Add(_sword);
         }
         else
         {
-            character.inventory.Add(GetComponent<InteractiveObj>());
+            player.inventory.Add(GetComponent<InteractiveObj>());
         }
-        character.ioActive = null;
+        player.ioActive = null;
     }
-    public void Drop(Character character)
+    public void Drop(Player player)
     {
         if(GetComponent<Rigidbody>())
         {
@@ -77,6 +77,6 @@ public class Pickup : MonoBehaviour
             Rigidbody childRb = child.GetComponent<Rigidbody>();
             childRb.useGravity = true;
         }
-        character.inventory.Remove(GetComponent<InteractiveObj>());
+        player.inventory.Remove(GetComponent<InteractiveObj>());
     }
 }

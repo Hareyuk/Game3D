@@ -26,7 +26,7 @@ public class RotateWithMouse : MonoBehaviour
             float mouseY = inputManager.verticalMouse;
             x = mouseX * rotateX;
             y = mouseY * rotateY;
-            transform.eulerAngles += speedRotate * new Vector3(x, y, 0);
+            transform.eulerAngles += Time.deltaTime * speedRotate * new Vector3(x, y, 0);
             //transform.Rotate(speedRotate * new Vector3(x, 0, y));
             //transform.eulerAngles += speedRotate * new Vector3(x*0.1f, y, 0);
         }

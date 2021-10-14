@@ -6,7 +6,6 @@ public class PlayerWalk : PlayerState
 {
     public override void Init()
     {
-        print("probando walking");
         player.anim.Play("Walking");
     }
 
@@ -20,6 +19,33 @@ public class PlayerWalk : PlayerState
         if(inputManager.isRunning)
         {
             player.SetNewState(PlayerState.states.RUN);
+        }
+
+        if(!CheckSpeed())
+        {
+            ReduceSpeed(2);
+        }
+
+        Move();
+        OnTryToAttack();
+        OnTryInteract();
+    }
+
+    private void ReduceSpeed(float amount)
+    {
+        player.speed -= (player.maxSpeed - player.minSpeed) * Time.deltaTime * amount;
+    }
+
+    private bool CheckSpeed()
+    {
+        if(player.speed <= player.minSpeed)
+        {
+            player.speed = player.minSpeed;
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

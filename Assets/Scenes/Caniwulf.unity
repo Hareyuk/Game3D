@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.41489577, g: 0, b: 0.16821727, a: 1}
+  m_IndirectSpecularColor: {r: 0.41458967, g: 0, b: 0.16814014, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -906,18 +906,14 @@ MonoBehaviour:
   rotationSpeed: 150
   referenceBox: {fileID: 1763672495}
   cameraFollower: {fileID: 327592839}
-  anim: {fileID: 395325609}
   isWalking: 0
   isRunning: 0
   weapon: {fileID: 1399550406}
   inventory: {fileID: 395325610}
   hand: {fileID: 1763672496}
+  handWeapon: {fileID: 0}
   ioActive: {fileID: 0}
---- !u!95 &395325609 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8422892626592999198, guid: c04a77e1da83230489acfe6c71129d05, type: 3}
-  m_PrefabInstance: {fileID: 850305763}
-  m_PrefabAsset: {fileID: 0}
+  ioUsing: {fileID: 0}
 --- !u!114 &395325610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1827,8 +1823,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888345175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1, z: 0}
-  m_LocalScale: {x: 5.898024, y: 7.267583, z: 0.28462}
+  m_LocalPosition: {x: 0, y: 2.04, z: 0}
+  m_LocalScale: {x: 5.898024, y: 8.027519, z: 0.28462}
   m_Children: []
   m_Father: {fileID: 692780607}
   m_RootOrder: 0
@@ -2288,7 +2284,7 @@ Transform:
   m_GameObject: {fileID: 1104678514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.47, y: 1.94, z: -13.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.4203, z: 1}
   m_Children:
   - {fileID: 1949872582}
   - {fileID: 2057009383}
@@ -2589,13 +2585,14 @@ MonoBehaviour:
   rotationSpeed: 150
   referenceBox: {fileID: 10890115}
   cameraFollower: {fileID: 327592839}
-  anim: {fileID: 0}
   isWalking: 0
   isRunning: 0
   weapon: {fileID: 0}
   inventory: {fileID: 0}
   hand: {fileID: 0}
+  handWeapon: {fileID: 0}
   ioActive: {fileID: 0}
+  ioUsing: {fileID: 0}
 --- !u!114 &1152538687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3310,13 +3307,14 @@ MonoBehaviour:
   rotationSpeed: 150
   referenceBox: {fileID: 0}
   cameraFollower: {fileID: 327592839}
-  anim: {fileID: 1419606212}
   isWalking: 0
   isRunning: 0
   weapon: {fileID: 0}
   inventory: {fileID: 1419606211}
   hand: {fileID: 0}
+  handWeapon: {fileID: 0}
   ioActive: {fileID: 0}
+  ioUsing: {fileID: 0}
 --- !u!114 &1419606211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3332,11 +3330,6 @@ MonoBehaviour:
   all: []
   totalItems: 5
   uiInventory: {fileID: 1626403251}
---- !u!95 &1419606212 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: a2cfa12e4cf28f8489b724922d45b4c7, type: 3}
-  m_PrefabInstance: {fileID: 1419606204}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1593170157
 GameObject:
   m_ObjectHideFlags: 0
@@ -3642,6 +3635,7 @@ MonoBehaviour:
   - Box
   inputManager: {fileID: 395325607}
   positionInventory: 0
+  player: {fileID: 0}
 --- !u!1 &1763672495
 GameObject:
   m_ObjectHideFlags: 0
