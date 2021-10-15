@@ -13,7 +13,7 @@ public class UIInventory : MonoBehaviour
     public InputManager inputManager;
     [SerializeField]
     public int positionInventory = 0;
-    public Character player;
+    public Player player;
     InteractiveObj lastFrameItem;
 
     void Start()
@@ -147,8 +147,6 @@ public class UIInventory : MonoBehaviour
             if(list.Count > 0)
             {
                 InteractiveObj obj = list[0];
-                //print("tag: " + obj.tag);
-                //print("Sprite: " + dicIcons[obj.tag]);
                 goImg.sprite = dicIcons[obj.GetComponent<Pickup>().tagName];
                 list.RemoveAt(0);
             }

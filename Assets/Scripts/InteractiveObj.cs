@@ -21,12 +21,21 @@ public class InteractiveObj : MonoBehaviour
         OnSomethingExit(other.gameObject);
     }
 
-    public virtual void OnInteract(Character character)
+    public virtual void OnInteract(Player player)
     {
         Pickup pickup = GetComponent<Pickup>();
         if (pickup != null)
         {
-            pickup.OnGrab(character);
+            pickup.OnGrab(player);
+        }
+        else
+        {
+            print("pickup IF 1");
+            if (this.GetComponent<OpenableDoor>())
+            {
+                print("pickup IF 2");
+                this.GetComponent<OpenableDoor>().OpenDoor();
+            }
         }
     }
 }

@@ -15,6 +15,9 @@ public class PlayerIdle : PlayerState
         {
             player.SetNewState(PlayerState.states.WALK);
         }
+
+        OnTryToAttack();
+        OnTryInteract();
     }
 
 }

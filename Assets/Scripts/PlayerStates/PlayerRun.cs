@@ -16,5 +16,32 @@ public class PlayerRun : PlayerState
         {
             player.SetNewState(PlayerState.states.WALK);
         }
+
+        if(!CheckSpeed())
+        {
+            AddSpeed(2);
+        }
+
+        Move();
+        OnTryToAttack();
+        OnTryInteract();
+    }
+
+    private bool CheckSpeed()
+    {
+        if (player.speed >= player.maxSpeed)
+        {
+            player.speed = player.maxSpeed;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void AddSpeed(float amount)
+    {
+        player.speed += (player.maxSpeed - player.minSpeed) * Time.deltaTime * amount;
     }
 }
