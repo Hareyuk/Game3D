@@ -1,0 +1,16 @@
+line|Doggo|Hola! Soy el doggo
+line|Orco|¿Viniste a matarme?
+choices
+Sí, te mataré|pelear
+No, no vengo a pelear|nada
+end-choices
+label-read|pelear
+line|Doggo|¡Sí,vine a luchar!
+line|Orco|¡Así será entonces!
+label-jump|fin
+label-read|nada
+line|Doggo|No, no vengo a pelear.
+line|Orco|Está bien.
+label-jump|fin
+label-read|fin
+end-text

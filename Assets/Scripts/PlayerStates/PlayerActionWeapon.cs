@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class PlayerActionWeapon : PlayerState
 {
+    public GameObject effectattack1;
+    public GameObject effectattack2;
+
+    
     public override void Init()
     {
         player.anim.Play("Attack1");
         player.canAttack = false;
         player.weapon.GetComponent<CapsuleCollider>().enabled = true;
+    }
+
+    public void AnimateEffect(float numberAttack)
+    {
+        switch(numberAttack)
+        {
+            case 1:
+                print("Animation");
+                GameObject fx = Instantiate(effectattack1, player.transform);
+                fx.GetComponent<Animation>().Play();
+                break;
+        }
     }
 
     private void Update()

@@ -8,14 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: EffectSword
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10751, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHABLEND_ON _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -45,11 +44,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1f1caa79c8aa6a04d83556bca2483190, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eb7b12341c0035f4b9f158ccbc2c29c6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1f1caa79c8aa6a04d83556bca2483190, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex3:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -82,13 +89,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
+    - _Alpha1: 0
+    - _Alpha2: 0
+    - _Alpha3: 0
     - _AlphaClip: 0
     - _Blend: 0
+    - _Bri: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _Con: 1
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0.33
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
@@ -97,10 +109,12 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _Metallic: 0.048
+    - _InvFade: 5
+    - _Metallic: 0
     - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Queue: 3000
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SampleGI: 0
@@ -112,11 +126,42 @@ Material:
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 0
+    - _ac: 0
+    - _fT: 1
+    - _fTA: 0
+    - _fTAE: 0
+    - _inv1: 0
+    - _inv2: 0
+    - _inv3: 0
+    - _invAlpha1: 0
+    - _invAlpha2: 0
+    - _invAlpha3: 0
+    - _numberTex: 0
+    - _rgbc: 0
+    - _sT: 1
+    - _sTA: 0
+    - _sTAE: 0
+    - _tT: 1
+    - _tTA: 0
+    - _tTAE: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
+    - _Color: {r: 1, g: 0.89556944, b: 0.21226418, a: 1}
+    - _EmissionColor: {r: 1, g: 0.9610109, b: 0.8915094, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _Pan1: {r: 0, g: 0, b: 0, a: 0}
+    - _Pan2: {r: 0, g: 0, b: 0, a: 0}
+    - _Pan3: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Rot1: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Rot2: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Rot3: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Scale: {r: 1, g: 1, b: 0.5, a: 0.5}
+    - _Scale2: {r: 1, g: 1, b: 0.5, a: 0.5}
+    - _Scale3: {r: 1, g: 1, b: 0.5, a: 0.5}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _Tile1: {r: 1, g: 1, b: 0, a: 0}
+    - _Tile2: {r: 1, g: 1, b: 0, a: 0}
+    - _Tile3: {r: 1, g: 1, b: 0, a: 0}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
