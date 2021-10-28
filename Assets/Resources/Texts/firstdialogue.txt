@@ -1,0 +1,16 @@
+line|Voz misteriosa|Bienvenido a la mazmorra de la muerte.
+line|Doggo|¿Eres quien secuestró a mi mejor amigo? ¡Muéstrate! ¡Te voy a pelear!
+line|Voz misteriosa|Pobre del caballero... ¿Qué harías si supieras que su vida está en riesgo? Cuanto más te acerques, más en peligro estará...
+choices
+¡Lo salvaré!|saveFriend
+Te arrenpentirás de esto...|ChallengeEnemy
+end-choices
+label-read|saveFriend
+line|Doggo|Ya lo dije, ¡vine a rescatarlo! ¡No permitiré que le pongas un dedo encima!
+label-jump|answer
+label-read|ChallengeEnemy
+line|Doggo|¡Te arrenpentirás de esto, te voy a derrotar!
+label-jump|answer
+label-read|answer
+line|Voz misteriosa|¡Así será entonces! ¿Podrá el caballero superar los obstáculos que preparé?
+end-text

@@ -12,7 +12,7 @@ public class PlayerActionWeapon : PlayerState
     {
         player.anim.Play("Attack1");
         player.canAttack = false;
-        player.weapon.GetComponent<CapsuleCollider>().enabled = true;
+        player.weapon.GetComponent<Collider>().enabled = true;
     }
 
     public void AnimateEffect(float numberAttack)
