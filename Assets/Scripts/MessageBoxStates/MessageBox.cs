@@ -44,4 +44,12 @@ public class MessageBox : MonoBehaviour
         animCharacters = list;
         SetNewState(MessageBoxState.states.SHOW);
     }
+
+    public void ReanudeAnimationCharacters()
+    {
+        foreach(Animator anim in animCharacters)
+        {
+            anim.speed = 1;
+        }
+    }
 }

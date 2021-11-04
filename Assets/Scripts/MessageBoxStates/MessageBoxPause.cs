@@ -18,8 +18,13 @@ public class MessageBoxPause : MessageBoxState
         }    
     }
 
+    /*
     public void MakingChoice(string label_jump)
     {
-
-    }
+        
+        MessageBoxRead scriptRead = GetComponent<MessageBoxRead>();
+        scriptRead.label_jump = label_jump;
+        choice = false;
+        msgBox.SetNewState(MessageBoxState.states.READLINE);
+    }*/
 }
