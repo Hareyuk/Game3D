@@ -12,19 +12,22 @@ public class PlayerRun : PlayerState
     // Update is called once per frame
     void Update()
     {
-        if(!inputManager.isRunning)
+        if (player.anim.speed != 0)
         {
-            player.SetNewState(PlayerState.states.WALK);
-        }
+            if (!inputManager.isRunning)
+            {
+                player.SetNewState(PlayerState.states.WALK);
+            }
 
-        if(!CheckSpeed())
-        {
-            AddSpeed(2);
-        }
+            if (!CheckSpeed())
+            {
+                AddSpeed(2);
+            }
 
-        Move();
-        OnTryToAttack();
-        OnTryInteract();
+            Move();
+            OnTryToAttack();
+            OnTryInteract();
+        }
     }
 
     private bool CheckSpeed()

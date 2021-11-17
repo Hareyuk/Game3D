@@ -1,5 +1,5 @@
 line|Voz misteriosa|Bienvenido a la mazmorra de la muerte.
-line|Doggo|¿Eres quien secuestró a mi mejor amigo? ¡Muéstrate! ¡Te voy a pelear!
+line|Doggo|¡No te escaparás de mí! ¡Vine a rescatar a mi mejor amigo!
 line|Voz misteriosa|Pobre del caballero... ¿Qué harías si supieras que su vida está en riesgo? Cuanto más te acerques, más en peligro estará...
 choices
 ¡Lo salvaré!|saveFriend

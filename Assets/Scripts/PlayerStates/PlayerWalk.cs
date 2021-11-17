@@ -12,24 +12,27 @@ public class PlayerWalk : PlayerState
     private void Update()
     {
         if(player.anim.speed != 0)
-        if(inputManager.horizontalAxis==0 && inputManager.verticalAxis==0)
         {
-            player.SetNewState(PlayerState.states.IDLE);
-        }
+            if (inputManager.horizontalAxis == 0 && inputManager.verticalAxis == 0)
+            {
+                player.SetNewState(PlayerState.states.IDLE);
+            }
 
-        if(inputManager.isRunning)
-        {
-            player.SetNewState(PlayerState.states.RUN);
-        }
+            if (inputManager.isRunning)
+            {
+                player.SetNewState(PlayerState.states.RUN);
+            }
 
-        if(!CheckSpeed())
-        {
-            ReduceSpeed(2);
-        }
+            if (!CheckSpeed())
+            {
+                ReduceSpeed(2);
+            }
 
-        Move();
-        OnTryToAttack();
-        OnTryInteract();
+            Move();
+            OnTryToAttack();
+            OnTryInteract();
+        }
+        
     }
 
     private void ReduceSpeed(float amount)

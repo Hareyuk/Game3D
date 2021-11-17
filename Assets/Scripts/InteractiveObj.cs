@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractiveObj : MonoBehaviour
 {
+    public string tipText = "Te olvidaste de escribir este texto";
     //public int score;
     //Las funciones virtual son funciones que pueden ser extendidas, sobrescritas por otra clase y etc
     public virtual void OnSomethingEnter(GameObject go) {

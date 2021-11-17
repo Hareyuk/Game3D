@@ -37,7 +37,7 @@ public class MessageBoxRead : MessageBoxState
         int pos = msgBox.positionLine;
         string lineRead = msgBox.arrayFileText[pos];
         string[] lineSplitted=lineRead.Split(char.Parse("|"));
-        print("Pos: " + pos + " - Linea leída: " + lineRead);
+        print("Pos: " + pos + " - Linea leúa: " + lineRead);
         switch (lineSplitted[0])
         {
             case "line":

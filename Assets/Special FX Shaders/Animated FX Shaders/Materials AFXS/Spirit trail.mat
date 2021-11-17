@@ -39,8 +39,8 @@ Material:
     - _Alpha1: 0
     - _Alpha2: 0
     - _Alpha3: 0
-    - _Bri: -1
-    - _Con: 0.92
+    - _Bri: 1
+    - _Con: 2
     - _DstBlend: 10
     - _InvFade: 5
     - _Mode: 7
@@ -80,5 +80,5 @@ Material:
     - _Tile1: {r: 1, g: 1, b: 0, a: 0}
     - _Tile2: {r: 1, g: 1, b: 0, a: 0}
     - _Tile3: {r: 1, g: 1, b: 0, a: 0}
-    - _TintColor: {r: 1, g: 0, b: 0, a: 0.5}
+    - _TintColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_BuildTextureStacks: []
