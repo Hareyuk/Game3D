@@ -28,7 +28,7 @@ public class MessageBoxWriting : MessageBoxState
             listCharacters.RemoveAt(0);
         }
 
-        if(msgBox.inputManager.pressingMouseLeftButton)
+        if(msgBox.inputManager.pressingMouseLeftButton || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
         {
             listCharacters.Clear();
             msgBox.textMessage.text = auxText;

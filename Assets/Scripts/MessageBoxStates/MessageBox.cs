@@ -38,8 +38,10 @@ public class MessageBox : MonoBehaviour
         }
     }
 
-    public void ExecuteEventMessage(TextAsset file, List<Animator> list)
+    public void ExecuteEventMessage(TextAsset file, List<Animator> list, GameObject go)
     {
+        if(go.GetComponent<TriggerDialogue>().destroyIt)
+            go.SetActive(false);
         currentFile = file;
         animCharacters = list;
         SetNewState(MessageBoxState.states.SHOW);

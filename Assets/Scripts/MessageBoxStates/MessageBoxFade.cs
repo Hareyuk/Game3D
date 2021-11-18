@@ -14,7 +14,6 @@ public class MessageBoxFade : MessageBoxState
     {
         if (msgBox.msgImage.localPosition.y > -800)
         {
-            print("ME ESTAN MOVIENDO?????");
             Vector3 moveImg = -msgBox.msgImage.up * speed;
             msgBox.msgImage.Translate(Time.deltaTime * moveImg);
         }
