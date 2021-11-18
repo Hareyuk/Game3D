@@ -8,7 +8,6 @@ public class PlayerInteraction : PlayerState
     public override void Init()
     {
         print("probando Interacción");
-        player.anim.Play("Interaction");
         Pickup pickUpObject = player.inventory.GetPickupObject();
         player.ioActive.OnInteract(player);
         player.inventory.Refresh();

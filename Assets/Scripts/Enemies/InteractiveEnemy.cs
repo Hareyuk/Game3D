@@ -7,6 +7,7 @@ public class InteractiveEnemy : MonoBehaviour
     public float lifePoints;
     public Animator anim;
     public DetectTargetCamera enemyView;
+    public DetectTargetCamera enemyViewFar;
     public DetectTargetCamera playerNearEnemy;
     public bool isWalking;
     public bool playerDetected;

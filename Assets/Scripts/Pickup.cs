@@ -60,6 +60,7 @@ public class Pickup : MonoBehaviour
             player.inventory.Add(GetComponent<InteractiveObj>());
         }
         player.ioActive = null;
+        player.InteractoninUIFade();
     }
     public void Drop(Player player)
     {

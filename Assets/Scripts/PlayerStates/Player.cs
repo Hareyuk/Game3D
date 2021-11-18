@@ -87,8 +87,11 @@ public class Player : MonoBehaviour
     public Text txtButtonInteraction;
     void InteractionUIShow(InteractiveObj io)
     {
-        UIButtonInteraction.gameObject.SetActive(true);
-        txtButtonInteraction.text = io.tipText;
+        if(io.tipText != "")
+        {
+            UIButtonInteraction.gameObject.SetActive(true);
+            txtButtonInteraction.text = io.tipText;
+        }
         //Animator anim = UIButtonInteraction.GetComponent<Animator>();
         //anim.SetBool("Show", true);
         /*
@@ -134,7 +137,7 @@ public class Player : MonoBehaviour
         */
     }
 
-    void InteractoninUIFade()
+    public void InteractoninUIFade()
     {
         //Animator anim = UIButtonInteraction.GetComponent<Animator>();
         //anim.Play("UIInteractionFade");

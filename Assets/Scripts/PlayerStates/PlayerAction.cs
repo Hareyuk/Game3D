@@ -14,7 +14,6 @@ public class PlayerAction : PlayerState
         }
         else if (typeIoActive == UsableObjects.types.KEY)
         {
-            print("Objeto llave");
             player.SetNewState(PlayerState.states.ACTIONKEY);
         }
         else if (typeIoActive == UsableObjects.types.CUBE)

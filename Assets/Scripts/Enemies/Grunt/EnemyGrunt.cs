@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyGrunt : InteractiveEnemy
 {
-    bool isDead = false;
+
+    /*bool isDead = false;
     public float speed;
     public float speedRotation;
     public bool attack;
@@ -50,5 +51,5 @@ public class EnemyGrunt : InteractiveEnemy
                 attack = false;
             }
         }
-    }
+    }*/
 }
