@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Door : InteractiveObj
 {
+    public Transform leftDoor;
+    public Transform rightDoor;
     public List<SlotBox> listSlots;
     public List<FloorButton> listButtonsFloor;
     public float numberButtonsFloor = 1;
@@ -53,9 +55,13 @@ public class Door : InteractiveObj
 
     public void OpenDoor()
     {
+        /*
         Transform child = transform.GetChild(0);
         GameObject doorObj = child.gameObject;
         doorObj.transform.position += new Vector3(0,6,0);
+        */
+        leftDoor.eulerAngles = new Vector3(0, -70, 0);
+        rightDoor.eulerAngles = new Vector3(0, 70, 0);
     }
 
     public override void OnSomethingEnter(GameObject go)

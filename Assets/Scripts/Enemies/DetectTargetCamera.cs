@@ -4,16 +4,46 @@ using UnityEngine;
 
 public class DetectTargetCamera : MonoBehaviour
 {
-    public bool playerDetected;
     public Transform playerCharacter;
+    InteractiveEnemy enemy;
+    public bool viewFar;
+    public bool playerDetected = false;
+    private void Awake()
+    {
+        enemy = GetComponentInParent<InteractiveEnemy>();
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.name == playerCharacter.name)
+        if (collision.gameObject.name == playerCharacter.name)
         {
-            playerDetected = true;
+            if (viewFar)
+            {
+                if (playerCharacter.GetComponent<Player>().currentState.state == PlayerState.states.RUN)
+                {
+                    playerDetected = true;
+                }
+            }
+            else
+            {
+                playerDetected = true;
+            }
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name == playerCharacter.name)
+        {
+            if (viewFar)
+            {
+                if (playerCharacter.GetComponent<Player>().currentState.state == PlayerState.states.RUN)
+                {
+                    playerDetected = true;
+                }
+            }
+        }
+    }
     private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.name == playerCharacter.name)

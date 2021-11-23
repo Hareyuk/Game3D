@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAction : PlayerState
 {
-
     public override void Init()
     {
         UsableObjects.types typeIoActive = player.ioUsing.GetComponent<UsableObjects>().type;
@@ -23,4 +22,11 @@ public class PlayerAction : PlayerState
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(player.currentState.state == states.ACTION)
+        {
+            player.SetNewState(states.IDLE);
+        }
+    }
 }

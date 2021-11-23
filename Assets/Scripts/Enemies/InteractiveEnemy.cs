@@ -6,13 +6,13 @@ public class InteractiveEnemy : MonoBehaviour
 {
     public float lifePoints;
     public Animator anim;
-    public DetectTargetCamera enemyView;
+    /*public DetectTargetCamera enemyView;
     public DetectTargetCamera enemyViewFar;
     public DetectTargetCamera playerNearEnemy;
     public bool isWalking;
     public bool playerDetected;
     public bool isPlayerNear;
-
+    */
     public virtual void OnSomethingEnter(GameObject go)
     {
 
@@ -22,6 +22,7 @@ public class InteractiveEnemy : MonoBehaviour
         lifePoints -= amount;
     }
     public virtual void OnSomethingExit(GameObject go) { }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,7 +34,7 @@ public class InteractiveEnemy : MonoBehaviour
         OnSomethingExit(other.gameObject);
     }
 
-    public virtual void OnInteract(Character character)
+    public virtual void OnInteract(Player character)
     {
         
     }

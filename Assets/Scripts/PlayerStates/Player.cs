@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
 {
     public List<PlayerState> allStates;
     public PlayerState currentState;
+    public PlayerState lastState;
     public Animator anim;
-    public Character character;
 
     //Movement Speed
     public float speed;
@@ -17,11 +17,9 @@ public class Player : MonoBehaviour
     public float rotationSpeed;
 
     //Camera
-    public RotateWithMouse cameraFollower;
+    public Transform cameraFollower;
 
-    //Action Weapon
-    public float cooldownAnimAttack = 0;
-    public float cooldownButtonAttack;
+    //Action
     public bool canAttack = false;
     public int numAnimAttack = 0;
     public WeaponScript weapon;
@@ -36,6 +34,7 @@ public class Player : MonoBehaviour
     public InteractiveObj ioActive = null;
     public InteractiveObj ioUsing;
 
+    public float lifepoints;
 
     void Start()
     {
@@ -61,6 +60,18 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //RECEIVE ATTACK ENEMIES
+        if(other.gameObject.tag == "Weapons" && lifepoints > 0)
+        {
+            lastState = currentState;
+            if(currentState.state == PlayerState.states.ACTIONATTACK || currentState.state == PlayerState.states.ACTIONKEY || currentState.state == PlayerState.states.ACTIONOTHER || currentState.state == PlayerState.states.ACTION)
+            {
+                lastState.state = PlayerState.states.IDLE;
+            }
+            SetNewState(PlayerState.states.HITTED);
+            return;
+        }
+        //INTERACTIVE
         InteractiveObj io = other.gameObject.GetComponent<InteractiveObj>();
         if (io != null)
         {

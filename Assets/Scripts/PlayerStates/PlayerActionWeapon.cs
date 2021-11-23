@@ -12,7 +12,6 @@ public class PlayerActionWeapon : PlayerState
     {
         player.anim.Play("Attack1");
         player.canAttack = false;
-        player.weapon.GetComponent<Collider>().enabled = true;
     }
 
     public void AnimateEffect(float numberAttack)
@@ -20,9 +19,10 @@ public class PlayerActionWeapon : PlayerState
         switch(numberAttack)
         {
             case 1:
-                print("Animation");
                 GameObject fx = Instantiate(effectattack1, player.transform);
                 fx.GetComponent<Animation>().Play();
+                break;
+            default:
                 break;
         }
     }
@@ -31,8 +31,14 @@ public class PlayerActionWeapon : PlayerState
     {
         if(player.canAttack && inputManager.pressingMouseLeftButton)
         {
+            print("Ataque 2 Go!");
             player.anim.Play("Attack2");
             player.canAttack = false;
+        }
+
+        if(player.anim.name != "Attack1" && player.anim.name != "Attack2")
+        {
+            EndAttack();
         }
     }
 
@@ -43,8 +49,18 @@ public class PlayerActionWeapon : PlayerState
 
     public void EndAttack()
     {
-        player.SetNewState(PlayerState.states.IDLE);
-        player.weapon.GetComponent<CapsuleCollider>().enabled = false;
+        player.SetNewState(player.lastState.state);
+    }
+
+    public void EnableColliderWeapon()
+    {
+        player.weapon.GetComponentInChildren<Collider>().enabled = true;
+
+    }
+
+    public void DisableColliderWeapon()
+    {
+        player.weapon.GetComponentInChildren<Collider>().enabled = false;
     }
 
 }

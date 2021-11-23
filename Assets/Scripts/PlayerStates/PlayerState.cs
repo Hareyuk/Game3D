@@ -7,8 +7,7 @@ public class PlayerState : MonoBehaviour
     public Player player;
     public states state;
     public InputManager inputManager;
-    public states lastState;
-    public RotateWithMouse cameraFollower;
+    public Transform cameraFollower;
     public enum states
     {
         IDLE,
@@ -34,6 +33,7 @@ public class PlayerState : MonoBehaviour
     {
         if(inputManager.pressingMouseLeftButton)
         {
+            player.lastState = player.currentState;
             player.SetNewState(states.ACTION);
         }
     }
@@ -42,7 +42,7 @@ public class PlayerState : MonoBehaviour
     {
         if(inputManager.buttonSkill)
         {
-            lastState = player.currentState.state;
+            player.lastState = player.currentState;
             player.SetNewState(states.INTERACTION);
         }    
     }
@@ -53,9 +53,9 @@ public class PlayerState : MonoBehaviour
     public virtual void Move()
     {
         Vector3 nullifyY = new Vector3(1, 0, 1);
-        Vector3 forward = Vector3.Scale(cameraFollower.transform.forward, nullifyY) * (Time.deltaTime * player.rotationSpeed * inputManager.verticalAxis);
+        Vector3 forward = Vector3.Scale(cameraFollower.forward, nullifyY) * (Time.deltaTime * player.rotationSpeed * inputManager.verticalAxis);
 
-        Vector3 side = Vector3.Scale(cameraFollower.transform.right, nullifyY) * (Time.deltaTime * player.rotationSpeed * inputManager.horizontalAxis);
+        Vector3 side = Vector3.Scale(cameraFollower.right, nullifyY) * (Time.deltaTime * player.rotationSpeed * inputManager.horizontalAxis);
 
         transform.LookAt(transform.position + forward + side);
 

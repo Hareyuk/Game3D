@@ -16,6 +16,6 @@ public class PlayerActionKey : PlayerState
     public void EndAction()
     {
         animKey.Play("RotatingKey");
-        player.SetNewState(lastState);
+        player.SetNewState(player.lastState.state);
     }
 }
