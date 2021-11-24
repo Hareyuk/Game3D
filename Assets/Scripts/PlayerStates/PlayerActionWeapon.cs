@@ -8,15 +8,9 @@ public class PlayerActionWeapon : PlayerState
     public GameObject effectattack2;
     public override void Init()
     {
-        
-    }
-
-    private void OnEnable()
-    {
         player.anim.Play("Attack1");
         player.canAttack = false;
     }
-
     public void AnimateEffect(float numberAttack)
     {
         switch(numberAttack)
