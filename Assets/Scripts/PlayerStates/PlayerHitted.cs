@@ -9,12 +9,11 @@ public class PlayerHitted : PlayerState
         player.anim.Play("Hitted");
         player.lifepoints--;
     }
-
     public void CheckLifePoints()
     {
         if (player.lifepoints <= 0)
             player.SetNewState(states.DEATH);
         else
-            player.SetNewState(player.lastState.state);
+            player.SetNewState(states.IDLE);
     }
 }

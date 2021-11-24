@@ -11,10 +11,13 @@ public class MessageBoxPause : MessageBoxState
 
     private void Update()
     {
-        if(msgBox.inputManager.pressingMouseLeftButton && !choice)
+        if (!choice)
         {
-            msgBox.positionLine++;
-            msgBox.SetNewState(MessageBoxState.states.READLINE);
+            if (msgBox.inputManager.pressingMouseLeftButton || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+            {
+                msgBox.positionLine++;
+                msgBox.SetNewState(MessageBoxState.states.READLINE);
+            }
         }    
     }
 

@@ -11,13 +11,13 @@ public class PlayerIdle : PlayerState
 
     private void Update()
     {
-        if(inputManager.horizontalAxis != 0 || inputManager.verticalAxis != 0)
+        OnTryToAction();
+        OnTryInteract();
+        if (inputManager.horizontalAxis != 0 || inputManager.verticalAxis != 0)
         {
             player.SetNewState(PlayerState.states.WALK);
         }
 
-        OnTryToAttack();
-        OnTryInteract();
     }
 
 }

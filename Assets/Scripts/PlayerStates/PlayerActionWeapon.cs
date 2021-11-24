@@ -6,9 +6,12 @@ public class PlayerActionWeapon : PlayerState
 {
     public GameObject effectattack1;
     public GameObject effectattack2;
-
-    
     public override void Init()
+    {
+        
+    }
+
+    private void OnEnable()
     {
         player.anim.Play("Attack1");
         player.canAttack = false;
@@ -49,7 +52,7 @@ public class PlayerActionWeapon : PlayerState
 
     public void EndAttack()
     {
-        player.SetNewState(player.lastState.state);
+        player.SetNewState(states.IDLE);
     }
 
     public void EnableColliderWeapon()

@@ -49,6 +49,10 @@ public class Door : InteractiveObj
         }
         if(slotsPushed)
         {
+            foreach(SlotBox slot in listSlots)
+            {
+                slot.GetComponent<Renderer>().material = slot.GetComponent<FloorButton>().correct;
+            }
             OpenDoor();
         }
     }

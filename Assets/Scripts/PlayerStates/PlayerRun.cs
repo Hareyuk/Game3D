@@ -14,6 +14,8 @@ public class PlayerRun : PlayerState
     {
         if (player.anim.speed != 0)
         {
+            OnTryToAction();
+            OnTryInteract();
             if (!inputManager.isRunning)
             {
                 player.SetNewState(PlayerState.states.WALK);
@@ -25,8 +27,6 @@ public class PlayerRun : PlayerState
             }
 
             Move();
-            OnTryToAttack();
-            OnTryInteract();
         }
     }
 

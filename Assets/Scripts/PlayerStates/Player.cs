@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public List<PlayerState> allStates;
     public PlayerState currentState;
-    public PlayerState lastState;
+    //public PlayerState lastState;
     public Animator anim;
 
     //Movement Speed
@@ -63,11 +63,11 @@ public class Player : MonoBehaviour
         //RECEIVE ATTACK ENEMIES
         if(other.gameObject.tag == "Weapons" && lifepoints > 0)
         {
-            lastState = currentState;
-            if(currentState.state == PlayerState.states.ACTIONATTACK || currentState.state == PlayerState.states.ACTIONKEY || currentState.state == PlayerState.states.ACTIONOTHER || currentState.state == PlayerState.states.ACTION)
+            //lastState = currentState;
+            /*if(currentState.state == PlayerState.states.ACTIONATTACK || currentState.state == PlayerState.states.ACTIONKEY || currentState.state == PlayerState.states.ACTIONOTHER || currentState.state == PlayerState.states.ACTION)
             {
                 lastState.state = PlayerState.states.IDLE;
-            }
+            }*/
             SetNewState(PlayerState.states.HITTED);
             return;
         }

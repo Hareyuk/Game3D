@@ -16,6 +16,6 @@ public class PlayerInteraction : PlayerState
 
     private void EndInteraction()
     {
-        player.SetNewState(player.lastState.state);
+        player.SetNewState(states.IDLE);
     }
 }

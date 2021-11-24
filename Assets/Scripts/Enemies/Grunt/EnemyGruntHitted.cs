@@ -13,6 +13,14 @@ public class EnemyGruntHitted : EnemyGruntState
         if (enemy.lifePoints <= 0)
             enemy.SetNewState(states.DEATH);
         else
-            enemy.SetNewState(enemy.lastState.state);
+        {
+            if (enemy.detectNearEye || enemy.detectFarEye || enemy.detectBackEye)
+            {
+                enemy.SetNewState(states.FOLLOW);
+                OnTryAttack();
+            }
+            else
+                enemy.SetNewState(states.IDLE);
+        }
     }
 }

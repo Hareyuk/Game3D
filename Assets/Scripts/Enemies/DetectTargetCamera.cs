@@ -42,6 +42,10 @@ public class DetectTargetCamera : MonoBehaviour
                     playerDetected = true;
                 }
             }
+            else
+            {
+                playerDetected = true;
+            }
         }
     }
     private void OnTriggerExit(Collider collision)

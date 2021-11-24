@@ -7,7 +7,6 @@ public class EnemyGrunt : InteractiveEnemy
 
     public List<EnemyGruntState> allStates;
     public EnemyGruntState currentState;
-    public EnemyGruntState lastState;
     public DetectTargetCamera goFarEye;
     public DetectTargetCamera goNearEye;
     public DetectTargetCamera goBackEye;
@@ -46,6 +45,13 @@ public class EnemyGrunt : InteractiveEnemy
             }
         }
     }
+
+    private void FixedUpdate()
+    {
+        //para un bug de estados
+        if (currentState.state == EnemyGruntState.states.FOLLOW)
+            GetComponent<EnemyGruntFollow>().enabled = true;
+    }
     public void OnCharacterEnterViewZone(Player character)
     {
         this.character = character;
@@ -58,9 +64,6 @@ public class EnemyGrunt : InteractiveEnemy
     public void ReceiveDamage(int amountDamage)
     {
         lifePoints -= amountDamage;
-        lastState = currentState;
-        if (lastState.state == EnemyGruntState.states.ATTACK)
-            lastState.state = EnemyGruntState.states.FOLLOW;
         SetNewState(EnemyGruntState.states.HITTED);
     }
     /*bool isDead = false;

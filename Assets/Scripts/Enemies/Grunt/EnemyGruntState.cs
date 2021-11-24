@@ -53,7 +53,6 @@ public class EnemyGruntState : MonoBehaviour
 
     public virtual void OnHitted()
     {
-        enemy.lastState = enemy.currentState;
         enemy.SetNewState(states.HITTED);
     }
 }

@@ -29,11 +29,11 @@ public class PlayerState : MonoBehaviour
     }
 
 
-    public virtual void OnTryToAttack()
+    public virtual void OnTryToAction()
     {
         if(inputManager.pressingMouseLeftButton)
         {
-            player.lastState = player.currentState;
+            //player.lastState = player.currentState;
             player.SetNewState(states.ACTION);
         }
     }
@@ -42,7 +42,7 @@ public class PlayerState : MonoBehaviour
     {
         if(inputManager.buttonSkill)
         {
-            player.lastState = player.currentState;
+            //player.lastState = player.currentState;
             player.SetNewState(states.INTERACTION);
         }    
     }

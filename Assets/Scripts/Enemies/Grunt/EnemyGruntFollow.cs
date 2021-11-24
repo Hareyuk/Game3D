@@ -10,6 +10,13 @@ public class EnemyGruntFollow : EnemyGruntState
     }
     private void Update()
     {
+
+        OnTryAttack();
+        if (!enemy.detectFarEye && !enemy.detectBackEye && !enemy.detectNearEye)
+        {
+            enemy.SetNewState(states.IDLE);
+
+        }
         if (enemy.detectBackEye)
         {
             Rotate();
@@ -26,18 +33,5 @@ public class EnemyGruntFollow : EnemyGruntState
             enemy.speedMove = 11;
             Move();
         }
-
-        if (!enemy.detectFarEye && !enemy.detectBackEye && !enemy.detectNearEye)
-        {
-            enemy.SetNewState(states.IDLE);
-
-        }
-
-        if (enemy.detectBackEye && enemy.detectNearEye)
-        {
-            enemy.SetNewState(states.ATTACK);
-        }
-
-        OnTryAttack();
     }
 }

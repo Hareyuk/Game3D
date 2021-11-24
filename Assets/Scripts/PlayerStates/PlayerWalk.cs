@@ -13,6 +13,8 @@ public class PlayerWalk : PlayerState
     {
         if(player.anim.speed != 0)
         {
+            OnTryToAction();
+            OnTryInteract();
             if (inputManager.horizontalAxis == 0 && inputManager.verticalAxis == 0)
             {
                 player.SetNewState(PlayerState.states.IDLE);
@@ -29,8 +31,6 @@ public class PlayerWalk : PlayerState
             }
 
             Move();
-            OnTryToAttack();
-            OnTryInteract();
         }
         
     }
