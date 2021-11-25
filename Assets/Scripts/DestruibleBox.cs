@@ -9,7 +9,7 @@ public class DestruibleBox : MonoBehaviour
     bool isDestroyed = false;
     private void OnCollisionEnter(Collision collision)
     {
-        if (!isDestroyed)
+        if (!this.isDestroyed)
         {
             print("Triggered: " + collision.gameObject.name);
             if (collision.gameObject.GetComponent<UsableObjects>().type == UsableObjects.types.WEAPON)
@@ -18,7 +18,7 @@ public class DestruibleBox : MonoBehaviour
                 GetComponent<DropItems>().DropRewards(this.transform);
                 Instantiate(objectDestroyed, this.transform);
                 Destroy(boxToDestroy);
-                isDestroyed=true;
+                this.isDestroyed=true;
             }
         }
     }
