@@ -11,7 +11,7 @@ public class WeaponScript : MonoBehaviour
         string tagObject = go.tag;
         if (tagObject == "Enemy")
         {
-            EnemyGrunt enemyScript = go.GetComponent<EnemyGrunt>();
+            InteractiveEnemy enemyScript = go.GetComponent<InteractiveEnemy>();
             if(enemyScript.lifePoints > 0)
             {
                 enemyScript.ReceiveDamage(1);

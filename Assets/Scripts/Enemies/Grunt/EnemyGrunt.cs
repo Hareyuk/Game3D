@@ -61,7 +61,7 @@ public class EnemyGrunt : InteractiveEnemy
             currentState.OnCharacterEnterViewZone(character);
     }
 
-    public void ReceiveDamage(int amountDamage)
+    public override void ReceiveDamage(float amountDamage)
     {
         lifePoints -= amountDamage;
         SetNewState(EnemyGruntState.states.HITTED);

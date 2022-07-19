@@ -17,9 +17,8 @@ public class InteractiveEnemy : MonoBehaviour
     {
 
     }
-    public void ReceiveDamage(float amount)
+    public virtual void ReceiveDamage(float amount)
     {
-        lifePoints -= amount;
     }
     public virtual void OnSomethingExit(GameObject go) { }
 
