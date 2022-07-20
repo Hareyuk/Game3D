@@ -45,7 +45,7 @@ public class EnemyGruntState : MonoBehaviour
 
     public virtual void OnTryAttack()
     {
-        if(enemy.detectNearEye && enemy.detectBackEye)
+        if(enemy.detectNearEye && enemy.detectBackEye && enemy.character.lifepoints > 0)
         {
             enemy.SetNewState(states.ATTACK);
         }

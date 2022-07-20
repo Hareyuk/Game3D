@@ -43,7 +43,7 @@ public class EnemyTurtleState : MonoBehaviour
 
     public virtual void OnTryAttack()
     {
-        if (enemy.detectAttackEye)
+        if (enemy.detectAttackEye && enemy.character.lifepoints > 0)
         {
             enemy.SetNewState(states.ATTACK);
         }
