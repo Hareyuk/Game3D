@@ -13,7 +13,7 @@ public class attackBody : MonoBehaviour
     {
         if (enemy.character == other.gameObject.GetComponent<Player>())
         {
-            enemy.character.SetNewState(PlayerState.states.HITTED);
+            if(enemy.character.lifepoints > 0) enemy.character.SetNewState(PlayerState.states.HITTED);
             Rigidbody rbPlayer = enemy.character.GetComponent<Rigidbody>();
             Vector3 moveDirection = rbPlayer.transform.position - enemy.transform.position;
             moveDirection.y = 0;

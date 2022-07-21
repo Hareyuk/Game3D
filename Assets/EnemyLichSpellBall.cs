@@ -32,7 +32,8 @@ public class EnemyLichSpellBall : MonoBehaviour
     {
         if(other.gameObject.GetComponent<Player>())
         {
-            other.gameObject.GetComponent<Player>().SetNewState(PlayerState.states.HITTED);
+            Player pl = other.gameObject.GetComponent<Player>();
+            if(pl.lifepoints>0) pl.SetNewState(PlayerState.states.HITTED);
         }
     }
 

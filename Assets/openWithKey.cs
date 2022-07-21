@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class openWithKey : MonoBehaviour
+public class OpenWithKey : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public Transform leftDoor;
+    public Transform rightDoor;
+    public void OpenDoor()
     {
-        
+        leftDoor.localRotation = Quaternion.Euler(0, -70, 0);
+        rightDoor.localRotation = Quaternion.Euler(0, 70, 0);
+        this.GetComponent<BoxCollider>().enabled = false;
     }
 }

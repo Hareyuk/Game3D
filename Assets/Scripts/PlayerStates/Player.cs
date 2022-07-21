@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
             {
                 lastState.state = PlayerState.states.IDLE;
             }*/
-            SetNewState(PlayerState.states.HITTED);
+            if(lifepoints > 0) SetNewState(PlayerState.states.HITTED);
             return;
         }
         //INTERACTIVE

@@ -64,8 +64,9 @@ public class Door : InteractiveObj
         GameObject doorObj = child.gameObject;
         doorObj.transform.position += new Vector3(0,6,0);
         */
-        leftDoor.eulerAngles = new Vector3(0, -70, 0);
-        rightDoor.eulerAngles = new Vector3(0, 70, 0);
+        leftDoor.localRotation = Quaternion.Euler(0, -70, 0);
+        rightDoor.localRotation= Quaternion.Euler(0, 70, 0);
+        this.GetComponent<BoxCollider>().enabled = false;
     }
 
     public override void OnSomethingEnter(GameObject go)

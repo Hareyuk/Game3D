@@ -8,6 +8,7 @@ public class PlayerState : MonoBehaviour
     public states state;
     public InputManager inputManager;
     public Transform cameraFollower;
+    Rigidbody rbP;
     public enum states
     {
         IDLE,
@@ -23,6 +24,7 @@ public class PlayerState : MonoBehaviour
     }
     private void Awake()
     {
+        rbP = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         inputManager = GetComponent<InputManager>();
         cameraFollower = player.cameraFollower;
@@ -62,6 +64,7 @@ public class PlayerState : MonoBehaviour
 
         //Move
         Vector3 moveVector = Vector3.forward;
+        //rbP.MovePosition(moveVector * player.speed * Time.deltaTime);
         transform.Translate(moveVector * player.speed * Time.deltaTime);
     }
 }

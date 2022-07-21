@@ -14,12 +14,13 @@ public class EnemyLichAttack : EnemyLichState
     }
     private void Update()
     {
-        if (enemy.detectAttackEye)
+        if (enemy.detectAttackEye && enemy.character.lifepoints > 0)
         {
             Rotate();
         }
         else
         {
+            enemy.anim.speed = 0;
             enemy.SetNewState(states.IDLE);
         }
     }
