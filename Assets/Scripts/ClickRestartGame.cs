@@ -14,7 +14,7 @@ public class ClickRestartGame : MonoBehaviour
         {
             if (inputManager.pressingMouseLeftButton)
             {
-                SceneManager.LoadScene("Princ");
+                SceneManager.LoadScene("PrincFinal");
             }
         }
     }

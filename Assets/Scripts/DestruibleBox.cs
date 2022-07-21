@@ -11,7 +11,6 @@ public class DestruibleBox : MonoBehaviour
     {
         if (!this.isDestroyed)
         {
-            print("Triggered: " + collision.gameObject.name);
             if (collision.gameObject.GetComponent<UsableObjects>().type == UsableObjects.types.WEAPON)
             {
                 this.GetComponent<BoxCollider>().enabled = false;

@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class EnemyLichAttack : EnemyLichState
 {
+    public Transform characterHead;
+    public GameObject prefabSpell;
+    public Transform referenceSpell;
+    public Transform parentSpell;
     public override void Init()
     {
         enemy.anim.Play("attack01");
     }
     private void Update()
     {
-        if (!enemy.detectAttackEye) enemy.SetNewState(states.IDLE);
-        else Rotate();
+        if (enemy.detectAttackEye)
+        {
+            Rotate();
+        }
+        else
+        {
+            enemy.SetNewState(states.IDLE);
+        }
     }
 
     public void CastSpell()
     {
-        enemy.anim.speed = 0.5f;
+        GameObject prefab = Instantiate(prefabSpell, parentSpell);
+        prefab.transform.position = referenceSpell.position;
+        prefab.transform.LookAt(characterHead.position);
+        prefab.SetActive(true);
+        enemy.anim.speed = 0.65f;
     }
 
     public void RestoreAnimationSpeed()

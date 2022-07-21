@@ -10,7 +10,6 @@ public class EnemyLich : InteractiveEnemy
     public bool detectAttackEye;
     public Player character;
     public float speedRotation;
-
     void Start()
     {
         anim = GetComponent<Animator>();
