@@ -8,7 +8,7 @@ public class PlayerInteraction : PlayerState
     public override void Init()
     {
         Pickup pickUpObject = player.inventory.GetPickupObject();
-        if(player.ioActive)
+        if(player.ioActive != null)
         {
             player.ioActive.OnInteract(player);
             player.inventory.Refresh();

@@ -6,17 +6,27 @@ public class PlayerActionWeapon : PlayerState
 {
     public GameObject effectattack1;
     public GameObject effectattack2;
+    string currentNameAnim = "";
     public override void Init()
     {
-        player.anim.Play("Attack1");
-        player.canAttack = false;
+        if (player != null)
+        {
+            player.anim.Play("Attack1");
+            player.canAttack = false;
+            currentNameAnim = player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        }
     }
     public void AnimateEffect(float numberAttack)
     {
+        GameObject fx;
         switch(numberAttack)
         {
             case 1:
-                GameObject fx = Instantiate(effectattack1, player.transform);
+                fx = Instantiate(effectattack1, player.transform);
+                fx.GetComponent<Animation>().Play();
+                break;
+            case 2:
+                fx = Instantiate(effectattack2, player.transform);
                 fx.GetComponent<Animation>().Play();
                 break;
             default:
@@ -26,26 +36,25 @@ public class PlayerActionWeapon : PlayerState
 
     private void Update()
     {
-        if(player.canAttack && inputManager.pressingMouseLeftButton)
+        if(player.canAttack && inputManager.pressingMouseLeftButton && currentNameAnim != "Attack2")
         {
-            print("Ataque 2 Go!");
+            currentNameAnim = "Attack2";
             player.anim.Play("Attack2");
             player.canAttack = false;
-        }
-
-        if(player.anim.name != "Attack1" && player.anim.name != "Attack2")
-        {
-            EndAttack();
         }
     }
 
     public void EnablePreattack()
     {
+        currentNameAnim = "Attack1";
         player.canAttack = true;
+        this.enabled = true;
     }
 
     public void EndAttack()
     {
+        currentNameAnim = "not-attack";
+        this.enabled = false;
         player.SetNewState(states.IDLE);
     }
 

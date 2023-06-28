@@ -19,10 +19,15 @@ public class FloorButton : InteractiveObj
 
     public override void OnSomethingEnter(GameObject go)
     {
-        if(!isAlreadyPressed)
+        base.OnSomethingEnter(go);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Changed everything from OnSomethingEnter to here and worked NICE
+        if (!isAlreadyPressed)
         {
-            print("Algo entró");
-            if (go.name == "DogPBR_Mine")
+            if (other.name == "DogPBR_Mine") //Check if is the player
             {
                 isAlreadyPressed = true;
                 if (door.numberButtonsFloor == numberCorrect)
@@ -39,7 +44,6 @@ public class FloorButton : InteractiveObj
                 door.numberButtonsFloor++;
                 door.checkButtonsFloor();
             }
-            base.OnSomethingEnter(go);
         }
     }
 

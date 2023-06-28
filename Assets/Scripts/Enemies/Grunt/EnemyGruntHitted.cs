@@ -6,7 +6,10 @@ public class EnemyGruntHitted : EnemyGruntState
 {
     public override void Init()
     {
-        enemy.anim.Play("Hitted");
+        if(enemy.lifePoints <= 0)
+            enemy.SetNewState(states.DEATH);
+        else
+            enemy.anim.Play("Hitted");
     }
     public void CheckLifePoints()
     {

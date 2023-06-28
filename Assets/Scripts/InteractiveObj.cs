@@ -31,11 +31,9 @@ public class InteractiveObj : MonoBehaviour
         }
         else
         {
-            print("pickup IF 1");
-            if (this.GetComponent<OpenableDoor>())
+            if(this.TryGetComponent(out OpenableDoor component))
             {
-                print("pickup IF 2");
-                this.GetComponent<OpenableDoor>().OpenDoor();
+                component.OpenDoor();
             }
         }
     }

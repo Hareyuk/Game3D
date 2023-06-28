@@ -31,7 +31,7 @@ public class UIInventory : MonoBehaviour
         bool mouseWheelPassed = false;
         if (inputManager.axisMouse < 0f)
         {
-            print("cantidad de items:" + inventory.all.Count + " - position: " + positionInventory);
+            //print("cantidad de items:" + inventory.all.Count + " - position: " + positionInventory);
             if(positionInventory < inventory.all.Count-1)
             {
                 positionInventory++;

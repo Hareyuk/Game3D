@@ -57,6 +57,7 @@ public class Pickup : MonoBehaviour
         }
         else
         {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
             player.inventory.Add(GetComponent<InteractiveObj>());
         }
         player.ioActive = null;

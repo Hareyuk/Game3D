@@ -6,7 +6,8 @@ public class KillPlayer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<Player>().SetNewState(PlayerState.states.DEATH);
+        if(other.gameObject.TryGetComponent(out Player player))
+            other.gameObject.GetComponent<Player>().SetNewState(PlayerState.states.DEATH);
     }
 
 }

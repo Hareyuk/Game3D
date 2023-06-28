@@ -48,6 +48,7 @@ public class EnemyLich : InteractiveEnemy
 
     public override void ReceiveDamage(float amountDamage)
     {
-        if(currentState.state != EnemyLichState.states.DEATH) SetNewState(EnemyLichState.states.HITTED);
+        //if(currentState.state != EnemyLichState.states.DEATH) SetNewState(EnemyLichState.states.HITTED);
+        if (currentState.state != EnemyLichState.states.DEATH) SetNewState(EnemyLichState.states.DEATH);
     }
 }

@@ -18,6 +18,9 @@ public class KeyObjectOpen : MonoBehaviour
     {
         if(collisionDoor)
         {
+            //Only this time to increase damage 2023
+            inventoryCharacter.GetComponent<Player>().multiplierDmg = 2;
+            //End of this unique line 2023
             collisionDoor.OpenDoor();
             /*inventoryCharacter.Remove(this.GetComponentInParent<InteractiveObj>());
             Destroy(transform.parent.gameObject);*/

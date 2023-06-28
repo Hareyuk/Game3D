@@ -11,13 +11,16 @@ public class DestruibleBox : MonoBehaviour
     {
         if (!this.isDestroyed)
         {
-            if (collision.gameObject.GetComponent<UsableObjects>().type == UsableObjects.types.WEAPON)
+            if (collision.gameObject.TryGetComponent(out UsableObjects component))
             {
-                this.GetComponent<BoxCollider>().enabled = false;
-                GetComponent<DropItems>().DropRewards(this.transform);
-                Instantiate(objectDestroyed, this.transform);
-                Destroy(boxToDestroy);
-                this.isDestroyed=true;
+                if (component.type == UsableObjects.types.WEAPON)
+                {
+                    this.GetComponent<BoxCollider>().enabled = false;
+                    GetComponent<DropItems>().DropRewards(this.transform);
+                    Instantiate(objectDestroyed, this.transform);
+                    Destroy(boxToDestroy);
+                    this.isDestroyed=true;
+                }
             }
         }
     }

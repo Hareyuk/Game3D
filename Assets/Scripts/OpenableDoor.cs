@@ -13,6 +13,7 @@ public class OpenableDoor : InteractiveObj
         {
             leftDoor.eulerAngles = new Vector3(0, -70, 0);
             rightDoor.eulerAngles = new Vector3(0, 70, 0);
+            openable = false;
         }
     }
     public override void OnSomethingEnter(GameObject go)
@@ -23,7 +24,7 @@ public class OpenableDoor : InteractiveObj
     {
         if(go.transform.localPosition.z < -5.1)
         {
-            openable = false;
+            openable = true;
             leftDoor.eulerAngles = new Vector3(0, 0, 0);
             rightDoor.eulerAngles = new Vector3(0, 0, 0);
         }

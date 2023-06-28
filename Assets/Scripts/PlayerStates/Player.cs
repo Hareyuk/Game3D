@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     public InteractiveObj ioUsing;
 
     public float lifepoints;
+    public float multiplierDmg = 1;
 
     void Start()
     {
